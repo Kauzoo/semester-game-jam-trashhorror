@@ -1,4 +1,3 @@
-using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,9 +21,7 @@ public class Hunter : Hostile
     protected override void Patrol()
     {
         // 1. Check if we've arrived at our random destination
-        float distance = Vector2.Distance(transform.position, targetPatrolPosition);
-
-        if (distance < waypointTolerance)
+        if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {
             patrolWaitTime -= Time.fixedDeltaTime;
 
@@ -32,12 +29,11 @@ public class Hunter : Hostile
             {
                 // Wait is over: Get a new point and reset timer
                 GenerateNewPatrolPoint();
-                patrolWaitTimer = patrolWaitTime;
+                patrolWaitTime = patrolWaitTimer;
             } 
-        }
-        else
+        } else if (!agent.pathPending)
         {
-            agent.destination = targetPatrolPosition;
+            patrolWaitTime -= Time.fixedDeltaTime;
         }
     }
     
@@ -57,14 +53,15 @@ public class Hunter : Hostile
                 //    NOW, check if we can actually *reach* it.
                 
                 NavMeshPath path = new NavMeshPath();
-                if (NavMesh.CalculatePath(agent.transform.position, hit.position, NavMesh.AllAreas, path))
+                if (agent.CalculatePath(hit.position, path))
                 {
                     // 3. Check the path status
                     if (path.status == NavMeshPathStatus.PathComplete)
                     {
                         // 4. SUCCESS! The path is complete and reachable.
                         //    Set this as our destination and exit the function.
-                        agent.SetDestination(hit.position);
+                        targetPatrolPosition = hit.position;
+                        agent.destination = targetPatrolPosition;
                         return;
                     }
                     // If path.status is PathPartial or PathInvalid, the point
@@ -72,7 +69,6 @@ public class Hunter : Hostile
                 }
             }
         }
-
         // If we failed 10 times, just stay put.
     }
 }

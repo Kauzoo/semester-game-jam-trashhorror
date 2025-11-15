@@ -183,7 +183,7 @@ MonoBehaviour:
   sanityLoss: 0.1
   damageInterval: 1
   detectionRadius: 10
-  patrolRadius: 10
+  patrolRadius: 5
   patrolWaitTime: 3
   waypointTolerance: 1
   bodyCollider: {fileID: 1186464919308914899}

@@ -24,10 +24,9 @@ public class Hostile : Creature
     
     [Tooltip("The range at which the hostile will detect the player.")]
     public float detectionRadius = 8f;
-    [Tooltip("The radius around its spawn point that the ghost will wander in.")]
+    [Tooltip("The radius around its spawn point that the hostile will wander in.")]
     public float patrolRadius = 10f;
-
-    [Tooltip("The radius around its spawn point that the ghost will wander in.")]
+    
     public float patrolWaitTime = 3f;
     [Tooltip("How close the ghost needs to be to a point to consider it 'arrived'.")]
     public float waypointTolerance = 1.0f;
