@@ -25,7 +25,7 @@ public class Ghost : Hostile
             {
                 // Wait is over: Get a new point and reset timer
                 GenerateNewPatrolPoint();
-                patrolWaitTimer = patrolWaitTime;
+                patrolWaitTime = patrolWaitTimer;
             } 
         }
         else

@@ -312,4 +312,4 @@ MonoBehaviour:
   patrolRadius: 10
   patrolWaitTime: 3
   waypointTolerance: 1
-  bodyCollider: {fileID: 0}
+  bodyCollider: {fileID: 9126550738895414689}
