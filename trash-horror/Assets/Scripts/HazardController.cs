@@ -39,10 +39,9 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
         
         _flasher.StartFlashing(() => Destroy(gameObject));
         
-        // TODO Deal damage
-        // PlayerController player = other.gameObject.GetComponent<PlayerController>();
-        // TriggerTrap(player);
+        PlayerBehaviour player = other.gameObject.GetComponent<PlayerBehaviour>();
+        TriggerTrap(player);
     }
 
-    protected abstract void TriggerTrap(/*PlayerController*/Object player);
+    protected abstract void TriggerTrap(PlayerBehaviour player);
 }
