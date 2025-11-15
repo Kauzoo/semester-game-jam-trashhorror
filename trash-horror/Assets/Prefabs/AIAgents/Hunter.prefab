@@ -185,6 +185,8 @@ MonoBehaviour:
   patrolRadius: 10
   patrolWaitTime: 3
   waypointTolerance: 1
+  detectionCollider: {fileID: 9126550738895414689}
+  bodyCollider: {fileID: 1186464919308914899}
 --- !u!58 &9126550738895414689
 CircleCollider2D:
   m_ObjectHideFlags: 0

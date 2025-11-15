@@ -39,6 +39,8 @@ public class Hostile : Creature
     protected Vector2 targetPatrolPosition; // The current random point we are moving to
     protected float patrolWaitTimer;        // Timer for waiting at a point
     
+    public Collider2D bodyCollider;
+    
     protected override void Start()
     {
         base.Start();
@@ -79,6 +81,9 @@ public class Hostile : Creature
                 
                 // 4. Reset cooldown timer
                 damageTimer = damageInterval;
+                
+                bodyCollider.enabled = false;
+                
             }
         }
     }
@@ -108,6 +113,10 @@ public class Hostile : Creature
         if (damageTimer > 0)
         {
             damageTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            bodyCollider.enabled = true;
         }
 
         if (target != null)
