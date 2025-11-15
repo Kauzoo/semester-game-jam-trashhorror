@@ -11,7 +11,7 @@ public class Flasher : MonoBehaviour
     private int _flashDirection = -1;
     private int _flashCounter;
     private SpriteRenderer _spriteRenderer;
-    
+
     private Action _callback;
 
     private void Start()
@@ -23,13 +23,9 @@ public class Flasher : MonoBehaviour
     {
         if (!isFlashing) return;
 
-        if (_spriteRenderer.color.a <= 0) 
+        if (_spriteRenderer.color.a <= 0)
         {
             _flashDirection = 1;
-        } 
-        else if (_spriteRenderer.color.a >= 1)
-        {
-            _flashDirection = -1;
             _flashCounter++;
             if (flashCount == _flashCounter)
             {
@@ -37,7 +33,11 @@ public class Flasher : MonoBehaviour
                 _callback?.Invoke();
             }
         }
-            
+        else if (_spriteRenderer.color.a >= 1)
+        {
+            _flashDirection = -1;
+        }
+
         float alpha = _spriteRenderer.color.a + flashingSpeed * _flashDirection * Time.deltaTime;
         _spriteRenderer.color = new Color(1, 1, 1, alpha);
     }
