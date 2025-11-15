@@ -42,21 +42,37 @@ public class Hunter : Hostile
     
     protected virtual void GenerateNewPatrolPoint()
     {
-        // 1. Get a random point *in a circle* (as a 3D vector).
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        randomDirection += new Vector3(spawnPosition.x,spawnPosition.y,0) ; // Add it to our "home" position
-
-        // 2. Find the *nearest valid point on the NavMesh* to our random point.
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, NavMesh.AllAreas))
+        // We will try a few times to find a valid point, in case we get unlucky
+        for (int i = 0; i < 10; i++)
         {
-            // 3. We found a valid point! Set it as the new destination.
-            Debug.Log(hit.position);
-            agent.destination = hit.position;
-            targetPatrolPosition = hit.position;
+            // 1. Get a random point (same as before)
+            Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
+            randomDirection += new Vector3(spawnPosition.x, spawnPosition.y, 0); 
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, NavMesh.AllAreas))
+            {
+                // 2. We found a valid point on the mesh.
+                //    NOW, check if we can actually *reach* it.
+                
+                NavMeshPath path = new NavMeshPath();
+                if (NavMesh.CalculatePath(agent.transform.position, hit.position, NavMesh.AllAreas, path))
+                {
+                    // 3. Check the path status
+                    if (path.status == NavMeshPathStatus.PathComplete)
+                    {
+                        // 4. SUCCESS! The path is complete and reachable.
+                        //    Set this as our destination and exit the function.
+                        agent.SetDestination(hit.position);
+                        return;
+                    }
+                    // If path.status is PathPartial or PathInvalid, the point
+                    // is on an unreachable island. We do nothing and let the loop try again.
+                }
+            }
         }
-        // If it fails, it just won't set a new destination and will try again
-        // next time it finishes waiting.
+
+        // If we failed 10 times, just stay put.
     }
 }
 
