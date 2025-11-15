@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -88,13 +89,48 @@ public class Hostile : Creature
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         // If the player enters our detection range, set them as the target
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player detected! Starting chase.");
-            target = other.transform;
+            //Debug.Log("Player detected! Starting chase.");
+            
+            /*var hits = Physics2D.BoxCastAll(transform.position, new Vector2(5,5), 0, transform.up, detectionRadius);
+            foreach (var hit in hits)
+            {
+                if (hit.transform == other.transform)
+                {
+                    target = other.transform;
+                    break;
+                }
+            }*/
+            
+            // 1. Calculate the direction and distance to the player
+            Vector2 direction = other.transform.position - transform.position;
+            float distance = direction.magnitude;
+
+            // 2. Cast a ray FROM us, TO the player, checking ONLY for walls
+            RaycastHit2D hit = Physics2D.Raycast(
+                transform.position, 
+                direction, 
+                distance, 
+                LayerMask.GetMask("Wall")
+            );
+
+            // 3. Check the result
+            if (hit.collider == null)
+            {
+                // The ray hit NOTHING. This means we have a clear line of sight.
+                // We are clear to chase.
+                target = other.transform;
+            }
+            else
+            {
+                // The ray HIT A WALL before it reached the player.
+                // We do NOT have line of sight.
+                target = null;
+            }
         }
     }
 
@@ -132,6 +168,11 @@ public class Hostile : Creature
     protected virtual void Chasing()
     {
         patrolWaitTimer = 0;
+        
+        // If Chasing look at target
+        Vector3 direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
     protected virtual void Patrol()
