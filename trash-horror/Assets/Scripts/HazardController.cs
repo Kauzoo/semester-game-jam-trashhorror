@@ -1,35 +1,34 @@
-using System;
 using UnityEngine;
 using Object = System.Object;
 
-public abstract class HazardController : MonoBehaviour
+public abstract class HazardController : MonoBehaviour, IGameEventListener
 {
     private SpriteRenderer _spriteRenderer;
     private Flasher _flasher;
     
+    public GameEvent sanityEvent;
     public Sprite camouflagedSprite;
     public Sprite sprite;
-    public int sanityThreshold = 40;
+    public float sanityThreshold = 0.4f;
 
-    private void Start()
+    private void OnEnable()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _flasher = GetComponent<Flasher>();
+        sanityEvent.RegisterListener(this);
     }
 
-    private void Update()
+    private void OnDisable()
+    {
+        sanityEvent.UnregisterListener(this);
+    }
+
+    public void OnEventRaised()
     {
         if (_flasher.isFlashing) return;
-        
-        int sanity = 0; // TODO Set from Game Controller
-        if (sanity >= sanityThreshold)
-        {
-            _spriteRenderer.sprite = camouflagedSprite;
-        }
-        else
-        {
-            _spriteRenderer.sprite = sprite;
-        }
+
+        int sanity = 0;
+        _spriteRenderer.sprite = sanity <= sanityThreshold ? camouflagedSprite : sprite;
     }
 
     private void OnTriggerEnter(Collider other)
