@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2972138624142245165}
   - component: {fileID: 4449283615282916333}
   m_Layer: 0
-  m_Name: Hazard
+  m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99b8236f8464f67b87a563496d5c189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpikeController
+  sanity: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  sanityEvent: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
   camouflagedSprite: {fileID: 0}
   sprite: {fileID: 0}
-  sanityThreshold: 40
+  sanityThreshold: 0.4

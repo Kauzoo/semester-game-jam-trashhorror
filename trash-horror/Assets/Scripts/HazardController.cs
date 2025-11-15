@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 using Object = System.Object;
+using Random = UnityEngine.Random;
 
 public abstract class HazardController : MonoBehaviour, IGameEventListener
 {
     private SpriteRenderer _spriteRenderer;
     private Flasher _flasher;
-    
+
+    public FloatVariable sanity;
     public GameEvent sanityEvent;
     public Sprite camouflagedSprite;
     public Sprite sprite;
@@ -22,13 +25,19 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
     {
         sanityEvent.UnregisterListener(this);
     }
-
+    
+    [ContextMenu("Raise")]
+    public void Raise()
+    {
+        sanity.value = Random.Range(0f, 1f);
+        sanityEvent.Raise();
+    }
+    
     public void OnEventRaised()
     {
         if (_flasher.isFlashing) return;
-
-        int sanity = 0;
-        _spriteRenderer.sprite = sanity <= sanityThreshold ? camouflagedSprite : sprite;
+        
+        _spriteRenderer.sprite = sanity.value <= sanityThreshold ? camouflagedSprite : sprite;
     }
 
     private void OnTriggerEnter(Collider other)
