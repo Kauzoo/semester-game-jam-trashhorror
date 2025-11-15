@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class InteractableDevice : MonoBehaviour, IInteractable
@@ -45,4 +46,16 @@ public abstract class InteractableDevice : MonoBehaviour, IInteractable
     }
 
     public abstract void Interact(PlayerBehaviour player);
+    public Dictionary<string, string> Serialize()
+    {
+        return new()
+        {
+            { "isOn", isOn.ToString() }
+        };
+    }
+
+    public void Deserialize(Dictionary<string, string> serialized)
+    {
+        isOn = bool.Parse(serialized["isOn"]);
+    }
 }

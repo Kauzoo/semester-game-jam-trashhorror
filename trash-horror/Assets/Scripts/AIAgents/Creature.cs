@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+using System.Globalization;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class Creature : MonoBehaviour
+public abstract class Creature : MonoBehaviour, IEntity
 {
     [Header("Creature Stats")]
     public float maxHealth;
@@ -20,7 +22,6 @@ public abstract class Creature : MonoBehaviour
         {
             Die();
         }
-
     }
 
     public virtual void Heal(float amount)
@@ -30,6 +31,25 @@ public abstract class Creature : MonoBehaviour
 
     protected virtual void Die()
     {
-       Destroy(gameObject);
+       // Destroy(gameObject);
+       gameObject.SetActive(false);
+    }
+
+    public Dictionary<string, string> Serialize()
+    {
+        return new()
+        {
+            {"pos", gameObject.transform.position.Serialize() },
+            {"maxHealth", maxHealth.ToString(CultureInfo.CurrentCulture) },
+            {"currentHealth", currentHealth.ToString(CultureInfo.CurrentCulture) },
+        };
+    }
+
+    public void Deserialize(Dictionary<string, string> serialized)
+    {
+        gameObject.GetComponent<Rigidbody2D>().position = Vector3Serialization.Deserialize(serialized["pos"]);
+        maxHealth = float.Parse(serialized["maxHealth"]);
+        currentHealth = float.Parse(serialized["currentHealth"]);
+        gameObject.SetActive(currentHealth > 0);
     }
 }

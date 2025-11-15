@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour, ISerializable
 {
 
 	private Vector2 movement;
@@ -77,6 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		if (!m_calmdown.WasPressedThisFrame()) return;
 
+		Debug.Log("[" + string.Join(", ", inventory.ToArray()) + "]");
 		Debug.Log("Calmed down");
 		SanityController.Instance.IncreaseSanity(0.1f);
 	}
@@ -119,4 +120,20 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		interactables.FirstOrDefault()?.Interact(this);
 	}
-}
+
+	public Dictionary<string, string> Serialize()
+	{
+		return new()
+		{
+			{"pos", transform.position.Serialize()},
+			{"inv", string.Join(",", inventory.ToArray())},
+		};
+	}
+
+	public void Deserialize(Dictionary<string, string> serialized)
+	{
+		transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
+		string inv = serialized["inv"];
+		inventory = string.IsNullOrWhiteSpace(inv) ? new List<string>() : inv.Split(',').ToList();
+	}
+}	
