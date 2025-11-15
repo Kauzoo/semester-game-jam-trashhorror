@@ -16,8 +16,12 @@ public class PlayerBehaviour : MonoBehaviour {
     private InputAction m_movement;
 	public static PlayerBehaviour instance;
 
+	private InputAction m_interaction;
+
 	[SerializeField]
 	private float speedMultiplier = 80;
+	
+	private SanityController sanityController;
 
     private void OnEnable()
     {
@@ -35,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 
 		m_movement = InputSystem.actions.FindAction("Move");
+		m_interaction = InputSystem.actions.FindAction("Interact");
 	}
 
 	private void Movement() {
@@ -59,9 +64,23 @@ public class PlayerBehaviour : MonoBehaviour {
 		
 	}
 
+	// Interaction: Increase Sanity
+	private void Interaction()
+	{
+		if (!m_interaction.WasPressedThisFrame()) return;
+		
+		Debug.Log("Interacted");
+		SanityController.Instance.IncreaseSanity(0.1f);
+	}
+
 	private void FixedUpdate() {
 		Movement();
 		rb.AddForce(movement * speedMultiplier);
+	}
+
+	private void Update()
+	{
+		Interaction();
 	}
 
 }
