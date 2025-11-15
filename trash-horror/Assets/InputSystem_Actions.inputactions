@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Calm down",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
@@ -83,6 +83,15 @@
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "538b72a8-b300-4b5b-a674-e9e81671351a",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -437,7 +446,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Interact",
+                    "action": "Calm down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -448,7 +457,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Interact",
+                    "action": "Calm down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -471,6 +480,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ff0a8c5-d2a9-4f31-a54a-a9e167815bae",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3bcd0a4-60fc-4879-b767-5b558113a1e7",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

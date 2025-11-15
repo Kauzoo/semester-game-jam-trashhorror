@@ -1,49 +1,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour {
+public class PlayerBehaviour : MonoBehaviour
+{
 
 	private Vector2 movement;
 	private Rigidbody2D rb;
 
 	public Camera camera;
 
-    public InputActionAsset InputActions;
+	public InputActionAsset InputActions;
 
-    private InputAction m_movement;
+	private InputAction m_movement;
 	public static PlayerBehaviour instance;
 
-	private InputAction m_interaction;
+	private InputAction m_calmdown;
 
 	[SerializeField]
 	private float speedMultiplier = 80;
-	
+
 	private SanityController sanityController;
 
-    private void OnEnable()
-    {
-        InputActions.FindActionMap("Player").Enable();
-    }
+	private List<String> inventory = new List<String>();
+	private List<IInteractable> interactables = new List<IInteractable>();
+
+	private void OnEnable()
+	{
+		InputActions.FindActionMap("Player").Enable();
+	}
 
 	private void OnDisable()
-    {
-        InputActions.FindActionMap("Player").Disable();
-    }
+	{
+		InputActions.FindActionMap("Player").Disable();
+	}
 
 
-    private void Awake() {
+	private void Awake()
+	{
 		instance = this;
 		rb = GetComponent<Rigidbody2D>();
 
 		m_movement = InputSystem.actions.FindAction("Move");
-		m_interaction = InputSystem.actions.FindAction("Interact");
+		m_calmdown = InputSystem.actions.FindAction("Calm down");
+		InputSystem.actions.FindAction("Interact").started += OnInteract;
 	}
 
-	private void Movement() {
-        
+
+	private void Movement()
+	{
+
 		movement = m_movement.ReadValue<Vector2>();
 
 		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
@@ -61,26 +70,53 @@ public class PlayerBehaviour : MonoBehaviour {
 			// Idle Animation?
 		}
 		*/
-		
+
 	}
 
-	// Interaction: Increase Sanity
-	private void Interaction()
+	private void CalmDown()
 	{
-		if (!m_interaction.WasPressedThisFrame()) return;
-		
-		Debug.Log("Interacted");
+		if (!m_calmdown.WasPressedThisFrame()) return;
+
+		Debug.Log("Calmed down");
 		SanityController.Instance.IncreaseSanity(0.1f);
 	}
 
-	private void FixedUpdate() {
+	private void FixedUpdate()
+	{
 		Movement();
 		rb.AddForce(movement * speedMultiplier);
 	}
 
 	private void Update()
 	{
-		Interaction();
+		CalmDown();
 	}
 
+	public void AddToInventory(string item)
+	{
+		inventory.Add(item);
+	}
+
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+		if (interactable != null)
+		{
+			interactables.Add(interactable);
+		}
+	}
+
+	public void OnTriggerExit2D(Collider2D other)
+	{
+		IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+		if (interactable != null)
+		{
+			interactables.Remove(interactable);
+		}
+	}
+
+	private void OnInteract(InputAction.CallbackContext context)
+	{
+		interactables.FirstOrDefault()?.Interact(this);
+	}
 }
