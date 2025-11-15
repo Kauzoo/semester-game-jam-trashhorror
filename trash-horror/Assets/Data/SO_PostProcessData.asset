@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc3f41e8e39a0c4e8917625daebf637, type: 3}
   m_Name: SO_PostProcessData
   m_EditorClassIdentifier: Assembly-CSharp::SO_PostProcessData
-  lensDistortionActivation: 0
-  channelMixerActivation: 0
-  whiteBalanceActivation: 0.4
+  lensDistortionActivation: 0.90000004
+  channelMixerActivation: 0.6
+  whiteBalanceActivation: 0.8
   colorAdjustmentsActivation: 0.6
-  chromaticAberrationActivation: 0.3
+  chromaticAberrationActivation: 0.5

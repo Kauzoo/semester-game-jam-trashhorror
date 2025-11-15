@@ -30,19 +30,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     private SO_PostProcessData.WhiteBalanceData whiteBalanceData;
     
     [SerializeField]
-    private SO_PostProcessData.ColorAdjustmentsData colorAdjustmentsData;
-    
-    [SerializeField]
     private SO_PostProcessData.ChromaticAberrationData chromaticAberrationData;
-    
-    private float chromaticCurveTime;
-    private float lensDistortionCurveTime;
-    private float channelMixerCurveTime;
-    private float whiteBalanceCurveTime;
-    private float colorAdjustmentsCurveTime;
-    
-    //private CurveStates curveState;
-
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,7 +38,6 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
         globalVolume.profile.TryGet<LensDistortion>(out lensDistortionData.component);
         globalVolume.profile.TryGet<ChannelMixer>(out channelMixerData.component);
         globalVolume.profile.TryGet<WhiteBalance>(out whiteBalanceData.component);
-        globalVolume.profile.TryGet<ColorAdjustments>(out colorAdjustmentsData.component);
         globalVolume.profile.TryGet<ChromaticAberration>(out chromaticAberrationData.component);
     }
     
@@ -75,31 +62,98 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     // Update is called once per frame
     void Update()
     {
+        HandleLensDistortion();
+        HandleChannelMixer();
+        HandleWhiteBalance();
         HandleChromaticAberration();
+        
     }
-    
+
+
+    private void HandleLensDistortion()
+    {
+        if (lensDistortionData.t <= 0f)
+            lensDistortionData.t = 0f;
+        
+        if(lensDistortionData.t > 2f)
+            lensDistortionData.t = 0f;
+
+        switch (lensDistortionData.curveState)
+        {
+            case SO_PostProcessData.CurveStates.Increas:
+                lensDistortionData.t += Time.deltaTime;
+                break;
+            
+            case SO_PostProcessData.CurveStates.Decreas:
+                lensDistortionData.t -= Time.deltaTime;
+                break;
+        }
+        
+        lensDistortionData.component.intensity.value = lensDistortionData.curve.Evaluate(lensDistortionData.t);
+    }
+
+    private void HandleChannelMixer()
+    {
+        if (channelMixerData.t <= 0f)
+            channelMixerData.t = 0f;
+        
+        if (channelMixerData.t > 1.5f)
+            channelMixerData.t = 0f;
+
+        switch (channelMixerData.curveState)
+        {
+            case SO_PostProcessData.CurveStates.Increas:
+                channelMixerData.t += Time.deltaTime;
+                break;
+            
+            case SO_PostProcessData.CurveStates.Neutral:
+                channelMixerData.t = 0;
+                break;
+        }
+        channelMixerData.component.greenOutGreenIn.value = channelMixerData.curve.Evaluate(channelMixerData.t);;
+    }
+
+    private void HandleWhiteBalance()
+    {
+        if (whiteBalanceData.t <= 0f)
+            whiteBalanceData.t = 0f;
+        if (whiteBalanceData.t > 4f)
+            whiteBalanceData.t = 0f;
+
+        switch (whiteBalanceData.curveState)
+        {
+            case SO_PostProcessData.CurveStates.Increas:
+                whiteBalanceData.t += Time.deltaTime;
+                break;
+            case SO_PostProcessData.CurveStates.Decreas:
+                whiteBalanceData.t -= Time.deltaTime;
+                break;
+        }
+        
+        whiteBalanceData.component.temperature.value = whiteBalanceData.curve.Evaluate(whiteBalanceData.t);
+    }
     private void HandleChromaticAberration()
     {
         
-        if(chromaticCurveTime <= 0)
-            chromaticCurveTime = 0f;
-        if (chromaticCurveTime >= 1f)
+        if(chromaticAberrationData.t <= 0)
+            chromaticAberrationData.t = 0f;
+        if (chromaticAberrationData.t >= 1f)
         {
-            chromaticCurveTime = 1f;
+            chromaticAberrationData.t = 1f;
         }
         
         switch (chromaticAberrationData.curveState)
         {
             case SO_PostProcessData.CurveStates.Increas:
-                chromaticCurveTime += Time.deltaTime;
+                chromaticAberrationData.t += Time.deltaTime;
                 break;
             case SO_PostProcessData.CurveStates.Decreas:
-                chromaticCurveTime -= Time.deltaTime;
+                chromaticAberrationData.t -= Time.deltaTime;
                 break;
             default:
                 return;
         }
-        chromaticAberrationData.component.intensity.value = chromaticAberrationData.curve.Evaluate(chromaticCurveTime);
+        chromaticAberrationData.component.intensity.value = chromaticAberrationData.curve.Evaluate(chromaticAberrationData.t);
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -111,14 +165,45 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             {
                 chromaticAberrationData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            else
+            else if (sanityData.value < postProcessData.chromaticAberrationActivation)
             {
                 chromaticAberrationData.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
+
+            if (sanityData.value > postProcessData.lensDistortionActivation)
+            {
+                lensDistortionData.curveState = SO_PostProcessData.CurveStates.Increas;
+            }
             
+            else if (sanityData.value < postProcessData.lensDistortionActivation)
+            {
+                lensDistortionData.curveState = SO_PostProcessData.CurveStates.Decreas;
+            }
+
+            if (sanityData.value > postProcessData.channelMixerActivation)
+            {
+                channelMixerData.curveState = SO_PostProcessData.CurveStates.Increas;
+            }
+            
+            else if (sanityData.value < postProcessData.channelMixerActivation)
+            {
+                channelMixerData.curveState = SO_PostProcessData.CurveStates.Neutral;
+            }
+
+            if (sanityData.value > postProcessData.whiteBalanceActivation)
+            {
+                whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Increas;
+            }
+            
+            else if (sanityData.value < postProcessData.whiteBalanceActivation)
+            {
+                whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Decreas;
+            }
             
             
         }
+        
+        
         Debug.Log("No Valid Objects");
     }
 }

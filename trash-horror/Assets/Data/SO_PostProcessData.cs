@@ -13,7 +13,8 @@ public class SO_PostProcessData : ScriptableObject
     public enum CurveStates
     {
         Increas,
-        Decreas
+        Decreas,
+        Neutral
     }
     
     private float steps = 0.1f;
@@ -58,10 +59,13 @@ public class SO_PostProcessData : ScriptableObject
         public AnimationCurve curve;
         
         [NonSerialized]
-        public float lensDistortionCurveTime;
+        public float t;
         
         [NonSerialized]
         public LensDistortion component;
+        
+        [NonSerialized]
+        public CurveStates curveState;
         
     }
 
@@ -71,7 +75,10 @@ public class SO_PostProcessData : ScriptableObject
         public AnimationCurve curve;
         
         [NonSerialized]
-        public float channelMixerCurveTime;
+        public float t;
+        
+        [NonSerialized]
+        public CurveStates curveState;
         
         [NonSerialized]
         public ChannelMixer component;
@@ -83,22 +90,13 @@ public class SO_PostProcessData : ScriptableObject
         public AnimationCurve curve;
         
         [NonSerialized]
-        public float whiteBalanceCurveTime;
+        public float t;
+        
+        [NonSerialized]
+        public CurveStates curveState;
         
         [NonSerialized]
         public WhiteBalance component;
-    }
-
-    [System.Serializable]
-    public struct ColorAdjustmentsData
-    {
-        public AnimationCurve curve;
-        
-        [NonSerialized]
-        public float colorAdjustmentsCurveTime;
-        
-        [NonSerialized]
-        public ColorAdjustments component;
     }
 
     [System.Serializable]
@@ -107,7 +105,7 @@ public class SO_PostProcessData : ScriptableObject
         public AnimationCurve curve;
         
         [NonSerialized]
-        public float chromaticCurveTime;
+        public float t;
         
         [NonSerialized]
         public ChromaticAberration component;
