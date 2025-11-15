@@ -26,21 +26,14 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
         sanityEvent.UnregisterListener(this);
     }
     
-    [ContextMenu("Raise")]
-    public void Raise()
-    {
-        sanity.value = Random.Range(0f, 1f);
-        sanityEvent.Raise();
-    }
-    
     public void OnEventRaised()
     {
         if (_flasher.isFlashing) return;
         
         _spriteRenderer.sprite = sanity.value <= sanityThreshold ? camouflagedSprite : sprite;
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
