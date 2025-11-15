@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc7a206b5ea461e86cd00593d7d57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hunter
-  maxHealth: 0
-  currentHealth: 0
-  chaseSpeed: 3
-  patrolSpeed: 1
+  maxHealth: 100
+  currentHealth: 100
+  chaseSpeed: 4
+  patrolSpeed: 0
   touchDamage: 0.1
   sanityLoss: 0.1
   damageInterval: 1
@@ -185,7 +185,6 @@ MonoBehaviour:
   patrolRadius: 10
   patrolWaitTime: 3
   waypointTolerance: 1
-  detectionCollider: {fileID: 9126550738895414689}
   bodyCollider: {fileID: 1186464919308914899}
 --- !u!58 &9126550738895414689
 CircleCollider2D:
