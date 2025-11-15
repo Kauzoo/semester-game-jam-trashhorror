@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Test_EnemyFollow : MonoBehaviour
+public class Test_EnemyFollow : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
     public Transform goal;
