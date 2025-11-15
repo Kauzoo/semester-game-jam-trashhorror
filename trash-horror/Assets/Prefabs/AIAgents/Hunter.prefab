@@ -176,11 +176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hunter
   maxHealth: 0
   currentHealth: 0
-  speed: 2
+  speed: 10
   touchDamage: 0.1
   sanityLoss: 0.1
   damageInterval: 1
-  detectionRadius: 8
+  detectionRadius: 3
 --- !u!58 &9126550738895414689
 CircleCollider2D:
   m_ObjectHideFlags: 0
