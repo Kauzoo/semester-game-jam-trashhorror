@@ -1,6 +1,34 @@
 using UnityEngine;
 
-public class Friendly : MonoBehaviour
+public class Friendly : Creature
 {
-   // TODO
+    [Tooltip("How much heal the friendly deals on contact")]
+    public float touchHeal = 0.1f;
+    [Tooltip("How much sanity gain the friendly deals on contact")]
+    public float sanityGain = 0.1f;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+        // 1. Check if the thing we hit is the "Player"
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 2. Check if damage cooldown has finished
+            if (effectTimer <= 0)
+            {
+                Debug.Log($"Friendly hit {collision.gameObject.name}!");
+                
+                // 3. Deal the damage + sanity loss
+                HealthController.Instance.IncreaseHealth(touchHeal);
+                SanityController.Instance.IncreaseSanity(sanityGain);
+                
+                // 4. Reset cooldown timer
+                effectTimer = effectInterval;
+                
+                bodyCollider.enabled = false;
+                
+            }
+        }
+    }
+   
 }
