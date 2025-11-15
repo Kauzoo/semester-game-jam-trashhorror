@@ -16,6 +16,6 @@ public class Ghost : Hostile
     void FixedUpdate()
     {
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
     }
 }
