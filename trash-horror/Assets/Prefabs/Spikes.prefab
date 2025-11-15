@@ -170,4 +170,4 @@ MonoBehaviour:
   sanityEvent: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
   camouflagedSprite: {fileID: 0}
   sprite: {fileID: 0}
-  sanityThreshold: 0.4
+  sanityThreshold: 0.8

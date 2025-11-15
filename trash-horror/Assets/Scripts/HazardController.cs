@@ -12,7 +12,7 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
     public GameEvent sanityEvent;
     public Sprite camouflagedSprite;
     public Sprite sprite;
-    public float sanityThreshold = 0.4f;
+    public float sanityThreshold = 0.8f;
 
     private void OnEnable()
     {
@@ -30,7 +30,7 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
     {
         if (_flasher.isFlashing) return;
         
-        _spriteRenderer.sprite = sanity.value <= sanityThreshold ? camouflagedSprite : sprite;
+        _spriteRenderer.sprite = sanity.value >= sanityThreshold ? camouflagedSprite : sprite;
     }
     
     private void OnTriggerEnter2D(Collider2D other)
