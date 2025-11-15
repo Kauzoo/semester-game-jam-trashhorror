@@ -3,10 +3,10 @@ using UnityEngine;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
-public abstract class HazardController : MonoBehaviour, IGameEventListener
+public abstract class Instant : MonoBehaviour, IGameEventListener
 {
     private SpriteRenderer _spriteRenderer;
-    private Flasher _flasher;
+    protected Flasher _flasher;
 
     public FloatVariable sanity;
     public GameEvent sanityEvent;
@@ -25,25 +25,25 @@ public abstract class HazardController : MonoBehaviour, IGameEventListener
     {
         sanityEvent.UnregisterListener(this);
     }
-    
+
     public void OnEventRaised()
     {
         if (_flasher.isFlashing) return;
-        
+
         _spriteRenderer.sprite = sanity.value >= sanityThreshold ? camouflagedSprite : sprite;
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
         _spriteRenderer.sprite = sprite;
-        
+
         _flasher.StartFlashing(() => Destroy(gameObject));
-        
+
         PlayerBehaviour player = other.gameObject.GetComponent<PlayerBehaviour>();
-        TriggerTrap(player);
+        Trigger(player);
     }
 
-    protected abstract void TriggerTrap(PlayerBehaviour player);
+    protected abstract void Trigger(PlayerBehaviour player);
 }

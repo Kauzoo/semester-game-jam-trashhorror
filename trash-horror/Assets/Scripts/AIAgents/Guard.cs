@@ -1,21 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Test_EnemyFollow : MonoBehaviour
+public class Guard : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
-    public Transform goal;
-
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Chasing()
     {
-        agent.destination = goal.position;
+        base.Chasing();
+        agent.destination = target.position;
     }
 }
+

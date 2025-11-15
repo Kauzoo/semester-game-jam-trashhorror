@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class SpikeController : HazardController
+public class SpikeController : Instant
 {
-    protected override void TriggerTrap(PlayerBehaviour player)
+    protected override void Trigger(PlayerBehaviour player)
     {
         // player.DealDamage(10);
     }
