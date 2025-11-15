@@ -91,7 +91,7 @@ public class Hostile : Creature
         if (target == null)
         {
             // TODO Patrolling logic
-            rb.linearVelocity = Vector2.zero;
+            // rb.linearVelocity = Vector2.zero;
         }
         
         // Else will be specific to hostile enemy type

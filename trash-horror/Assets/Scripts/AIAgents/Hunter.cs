@@ -1,21 +1,22 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Test_EnemyFollow : Hostile
+public class Hunter : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
-    public Transform goal;
-
+    
     void Start()
     {
+        base.Start();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        agent.destination = goal.position;
+        if (target != null)
+        {
+            agent.destination = target.position;
+        }
     }
 }
