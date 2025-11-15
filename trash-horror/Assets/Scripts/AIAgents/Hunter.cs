@@ -3,20 +3,23 @@ using UnityEngine;
 public class Hunter : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
-    
-    void Start()
+
+    protected override void Start()
     {
         base.Start();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
-    
-    void Update()
+
+    protected override void Chasing()
     {
-        if (target != null)
-        {
-            agent.destination = target.position;
-        }
+        base.Chasing();
+        agent.destination = target.position;
+    }
+
+    protected override void Patrol()
+    {
+        
     }
 }
