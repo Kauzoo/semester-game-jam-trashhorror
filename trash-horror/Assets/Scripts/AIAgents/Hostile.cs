@@ -33,6 +33,8 @@ public class Hostile : Creature
                 
                 bodyCollider.enabled = false;
                 
+                // TODO Maybe add knockback here
+                
             }
         }
     }

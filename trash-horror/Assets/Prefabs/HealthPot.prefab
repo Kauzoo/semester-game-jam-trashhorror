@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 53718050245491368, guid: 4b4baddd88f166247b4008064daa43c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,13 +131,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.31, y: 0.31}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &3954646676596583526
 MonoBehaviour:
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotController
   sanity: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
   sanityEvent: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
-  camouflagedSprite: {fileID: 0}
-  sprite: {fileID: 0}
+  camouflagedSprite: {fileID: 53718050245491368, guid: 4b4baddd88f166247b4008064daa43c7, type: 3}
+  sprite: {fileID: 3240154900095886977, guid: 0590a1378655e9440a51625c515ea12a, type: 3}
   sanityThreshold: 0.8
 --- !u!114 &6147198992911424648
 MonoBehaviour:
