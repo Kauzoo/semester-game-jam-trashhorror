@@ -4,12 +4,15 @@ using UnityEngine.AI;
 public class Hunter : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
+    private Animator _animator;
     protected override void Start()
     {
         base.Start();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        _animator = GetComponent<Animator>();
+        _animator.SetFloat("Speed",agent.speed);
     }
 
     protected override void Chasing()

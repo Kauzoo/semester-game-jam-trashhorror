@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Dog : Friendly
 {
     private UnityEngine.AI.NavMeshAgent agent;
+    
 
     protected override void Start()
     {
@@ -11,12 +12,15 @@ public class Dog : Friendly
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
+
     }
 
     protected override void Chasing()
     {
         base.Chasing();
         agent.destination = target.position;
+        
     }
 
     protected override void Patrol()
@@ -36,6 +40,8 @@ public class Dog : Friendly
         {
             patrolWaitTimer -= Time.fixedDeltaTime;
         }
+        
+        
     }
     
     protected virtual void GenerateNewPatrolPoint()
