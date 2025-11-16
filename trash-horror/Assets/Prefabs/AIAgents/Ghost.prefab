@@ -102,8 +102,9 @@ GameObject:
   - component: {fileID: 8700118330009590528}
   - component: {fileID: 5582369874564467668}
   - component: {fileID: 1355721120166881900}
-  - component: {fileID: 1118506144325099046}
   - component: {fileID: 1314737095817065357}
+  - component: {fileID: 1118506144325099046}
+  - component: {fileID: 1959533222461787293}
   m_Layer: 6
   m_Name: Ghost
   m_TagString: Untagged
@@ -258,30 +259,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1118506144325099046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945207461922790501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e9a782d3ba0482bb89d98f561f4046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ghost
-  maxHealth: 100
-  currentHealth: 100
-  chaseSpeed: 2
-  patrolSpeed: 2
-  touchDamage: 0.1
-  sanityLoss: 0.1
-  damageInterval: 1
-  detectionRadius: 5
-  patrolRadius: 10
-  patrolWaitTime: 3
-  waypointTolerance: 1
-  bodyCollider: {fileID: 5582369874564467668}
 --- !u!58 &1314737095817065357
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,3 +295,42 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1
+--- !u!114 &1118506144325099046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945207461922790501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e9a782d3ba0482bb89d98f561f4046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ghost
+  chaseSpeed: 2
+  patrolSpeed: 2
+  detectionRadius: 5
+  patrolRadius: 10
+  patrolWaitTime: 3
+  waypointTolerance: 1
+  effectInterval: 1
+  bodyCollider: {fileID: 5582369874564467668}
+  touchDamage: 0.1
+  sanityLoss: 0.1
+--- !u!114 &1959533222461787293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945207461922790501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b1305e311404567acc01dfc509e045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanitySpriteSwapper
+  sanityData: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  camouflagedSprite: {fileID: 0}
+  normalSprite: {fileID: 0}
+  sanityThreshold: 0.8

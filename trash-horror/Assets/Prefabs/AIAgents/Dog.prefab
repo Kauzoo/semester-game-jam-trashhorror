@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8178502397137734602}
   - component: {fileID: 4299751372484422267}
   - component: {fileID: 1557096102640795333}
+  - component: {fileID: 4287169913825604433}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -311,3 +312,20 @@ MonoBehaviour:
   bodyCollider: {fileID: 4299751372484422267}
   touchHeal: 0
   sanityGain: 0.25
+--- !u!114 &4287169913825604433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979327372812825060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b1305e311404567acc01dfc509e045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanitySpriteSwapper
+  sanityData: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  camouflagedSprite: {fileID: 0}
+  normalSprite: {fileID: 0}
+  sanityThreshold: 0.8

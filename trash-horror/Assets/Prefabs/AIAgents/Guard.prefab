@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 3112675908663263623}
   - component: {fileID: 9126550738895414689}
   - component: {fileID: 8959951708190292041}
+  - component: {fileID: 652264932888940367}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -301,15 +302,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e3d37318c1c4bfc85b6bb34fd0bea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Guard
-  maxHealth: 100
-  currentHealth: 100
   chaseSpeed: 10
   patrolSpeed: 1
-  touchDamage: 0.1
-  sanityLoss: 0.1
-  damageInterval: 1
   detectionRadius: 10
   patrolRadius: 10
   patrolWaitTime: 3
   waypointTolerance: 1
+  effectInterval: 1
   bodyCollider: {fileID: 9126550738895414689}
+  touchDamage: 0.1
+  sanityLoss: 0.1
+--- !u!114 &652264932888940367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698289539141878593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b1305e311404567acc01dfc509e045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanitySpriteSwapper
+  sanityData: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  camouflagedSprite: {fileID: 0}
+  normalSprite: {fileID: 0}
+  sanityThreshold: 0.8
