@@ -7,6 +7,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 {
+	[Header("Calm Down Settings")]
+	[Tooltip("If checked, Calm Down only works when near a 'Friendly' tagged object.")]
+	[SerializeField] private bool requireFriendlyNearby = true;
+	
+	[Tooltip("The radius (in units) to detect friendly creatures.")]
+	[SerializeField] private float friendlyCheckRadius = 5f;
+
+	[Tooltip("The amount of sanity to gain when pressing the interaction button")] [SerializeField]
+	private float sanityGainAmount = 0.1f;
 
 	private Vector2 movement;
 	private Rigidbody2D rb;
@@ -32,6 +41,13 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	private List<IInteractable> interactables = new List<IInteractable>();
 	public FloatVariable healthData;
 	public GameEvent onHealthChanged;
+	
+	
+	// This tracks how many friendly objects we are near.
+	private int friendlyCount = 0;
+    
+	// We are "near friendly" if the count is greater than 0
+	private bool isNearFriendly => friendlyCount > 0;
     
     //Animation
     private Animator _animator;
@@ -109,10 +125,23 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	{
 		if (!m_calmdown.WasPressedThisFrame()) return;
 
-		Debug.Log("Calmed down");
-		SanityController.Instance.IncreaseSanity(0.1f);
-	}
+		if (requireFriendlyNearby == false)
+		{
+			// --- MODE 1: "Always" ---
+			SanityController.Instance.IncreaseSanity(sanityGainAmount);
+			
+		}
+		else
+		{
+			// --- MODE 2: "Friendly Only" ---
+			if (isNearFriendly)
+			{
+				SanityController.Instance.IncreaseSanity(sanityGainAmount);
+			}
 
+		}
+	}
+	
 	private void FixedUpdate()
 	{
 		Movement();
@@ -131,6 +160,14 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 		{
 			interactables.Add(interactable);
 		}
+		
+		// Check if the object that entered has the "Friendly" tag
+		if (other.CompareTag("Friendly"))
+		{
+			// If yes, add one to our counter
+			friendlyCount++;
+			Debug.Log("Entered friendly aura. Count: " + friendlyCount);
+		}
 	}
 
 	public void OnTriggerExit2D(Collider2D other)
@@ -139,6 +176,16 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 		if (interactable != null)
 		{
 			interactables.Remove(interactable);
+		}
+		
+		// Check if the object that left has the "Friendly" tag
+		if (other.CompareTag("Friendly"))
+		{
+			// If yes, subtract one from our counter
+			friendlyCount--;
+			// (We use Mathf.Max to make sure it never goes below 0)
+			friendlyCount = Mathf.Max(0, friendlyCount); 
+			Debug.Log("Exited friendly aura. Count: " + friendlyCount);
 		}
 	}
 

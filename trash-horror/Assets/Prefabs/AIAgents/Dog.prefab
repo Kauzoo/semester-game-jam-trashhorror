@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4287169913825604433}
   m_Layer: 0
   m_Name: Dog
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,8 +310,6 @@ MonoBehaviour:
   waypointTolerance: 1
   effectInterval: 1
   bodyCollider: {fileID: 4299751372484422267}
-  touchHeal: 0
-  sanityGain: 0.25
 --- !u!114 &4287169913825604433
 MonoBehaviour:
   m_ObjectHideFlags: 0
