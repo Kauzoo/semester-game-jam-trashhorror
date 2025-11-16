@@ -1,34 +1,43 @@
 fileFormatVersion: 2
-guid: 685da177a8ff2514a84dcfe5ddb519e4
+guid: b6000672694c3754c97cccd50723034c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3581948151272049692
-    second: Knight StepDownSheet_0
+      213: -2051504418765166530
+    second: DogWolfSpriteSheet_0
   - first:
-      213: -8314846927096548101
-    second: Knight StepDownSheet_1
+      213: 8144247189428748632
+    second: DogWolfSpriteSheet_1
   - first:
-      213: -2055548982525979521
-    second: Knight StepDownSheet_2
+      213: 7230688934489667509
+    second: DogWolfSpriteSheet_2
   - first:
-      213: 8340279287393697287
-    second: Knight StepDownSheet_3
+      213: -8501257123622678491
+    second: DogWolfSpriteSheet_3
   - first:
-      213: -5446305151878937884
-    second: Knight StepDownSheet_4
+      213: 6713133861855474691
+    second: DogWolfSpriteSheet_4
   - first:
-      213: -4365094704964440793
-    second: Knight StepDownSheet_5
+      213: -9185318487316920014
+    second: DogWolfSpriteSheet_5
   - first:
-      213: 1382277343922248404
-    second: Knight StepDownSheet_6
+      213: -4282091961545687220
+    second: DogWolfSpriteSheet_6
   - first:
-      213: 8353530238792130641
-    second: Knight StepDownSheet_7
+      213: 1274240269718467979
+    second: DogWolfSpriteSheet_7
   - first:
-      213: -4859078133591305905
-    second: Knight StepDownSheet_8
+      213: 1778126728518656626
+    second: DogWolfSpriteSheet_8
+  - first:
+      213: 8557523752782974843
+    second: DogWolfSpriteSheet_9
+  - first:
+      213: 7527283925278014733
+    second: DogWolfSpriteSheet_10
+  - first:
+      213: 4527188406135301703
+    second: DogWolfSpriteSheet_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,7 +134,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,13 +146,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight StepDownSheet_0
+      name: DogWolfSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 131
-        width: 25
-        height: 60
+        x: 29
+        y: 192
+        width: 21
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e3ff87622d5a4ec0800000000000000
-      internalID: -3581948151272049692
+      spriteID: e38ab58b9979783e0800000000000000
+      internalID: -2051504418765166530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_1
+      name: DogWolfSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 131
-        width: 25
-        height: 60
+        x: 109
+        y: 192
+        width: 20
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf479a416cabb9c80800000000000000
-      internalID: -8314846927096548101
+      spriteID: 851cfd03bad260170800000000000000
+      internalID: 8144247189428748632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_2
+      name: DogWolfSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 131
-        width: 25
-        height: 59
+        x: 189
+        y: 192
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f749f1657193973e0800000000000000
-      internalID: -2055548982525979521
+      spriteID: 5b7ba9da641985460800000000000000
+      internalID: 7230688934489667509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_3
+      name: DogWolfSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 19
-        y: 67
-        width: 25
-        height: 55
+        x: 28
+        y: 144
+        width: 24
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70e36acb2df9eb370800000000000000
-      internalID: 8340279287393697287
+      spriteID: 520163a00b7750a80800000000000000
+      internalID: -8501257123622678491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_4
+      name: DogWolfSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 83
-        y: 67
-        width: 25
-        height: 55
+        x: 109
+        y: 144
+        width: 23
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,20 +249,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e240e3f156da64b0800000000000000
-      internalID: -5446305151878937884
+      spriteID: 304ba8dfda7d92d50800000000000000
+      internalID: 6713133861855474691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_5
+      name: DogWolfSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 147
-        y: 67
-        width: 25
-        height: 53
+        x: 2
+        y: 96
+        width: 75
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72de7ab3e711c63c0800000000000000
-      internalID: -4365094704964440793
+      spriteID: 23985ae6081378080800000000000000
+      internalID: -9185318487316920014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_6
+      name: DogWolfSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 19
-        y: 3
-        width: 25
-        height: 54
+        x: 82
+        y: 96
+        width: 75
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +293,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4da5e81bbe5de2310800000000000000
-      internalID: 1382277343922248404
+      spriteID: c4f73886c04f294c0800000000000000
+      internalID: -4282091961545687220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_7
+      name: DogWolfSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 83
-        y: 3
-        width: 25
-        height: 55
+        x: 162
+        y: 96
+        width: 75
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,20 +315,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 15060b74e73bde370800000000000000
-      internalID: 8353530238792130641
+      spriteID: b85311b26c20fa110800000000000000
+      internalID: 1274240269718467979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight StepDownSheet_8
+      name: DogWolfSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 147
-        y: 3
-        width: 25
-        height: 55
+        x: 2
+        y: 48
+        width: 75
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,8 +337,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f411c679e26119cb0800000000000000
-      internalID: -4859078133591305905
+      spriteID: 2726bf2b6dc2da810800000000000000
+      internalID: 1778126728518656626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogWolfSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 48
+        width: 75
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7fc891738e62c670800000000000000
+      internalID: 8557523752782974843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogWolfSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 35
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d34b949d8467860800000000000000
+      internalID: 7527283925278014733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogWolfSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 0
+        width: 50
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74626fa8eddc3de30800000000000000
+      internalID: 4527188406135301703
       vertices: []
       indices: 
       edges: []
@@ -348,15 +423,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Knight StepDownSheet_0: -3581948151272049692
-      Knight StepDownSheet_1: -8314846927096548101
-      Knight StepDownSheet_2: -2055548982525979521
-      Knight StepDownSheet_3: 8340279287393697287
-      Knight StepDownSheet_4: -5446305151878937884
-      Knight StepDownSheet_5: -4365094704964440793
-      Knight StepDownSheet_6: 1382277343922248404
-      Knight StepDownSheet_7: 8353530238792130641
-      Knight StepDownSheet_8: -4859078133591305905
+      DogWolfSpriteSheet_0: -2051504418765166530
+      DogWolfSpriteSheet_1: 8144247189428748632
+      DogWolfSpriteSheet_10: 7527283925278014733
+      DogWolfSpriteSheet_11: 4527188406135301703
+      DogWolfSpriteSheet_2: 7230688934489667509
+      DogWolfSpriteSheet_3: -8501257123622678491
+      DogWolfSpriteSheet_4: 6713133861855474691
+      DogWolfSpriteSheet_5: -9185318487316920014
+      DogWolfSpriteSheet_6: -4282091961545687220
+      DogWolfSpriteSheet_7: 1274240269718467979
+      DogWolfSpriteSheet_8: 1778126728518656626
+      DogWolfSpriteSheet_9: 8557523752782974843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

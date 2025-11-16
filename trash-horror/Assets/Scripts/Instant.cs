@@ -1,22 +1,25 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
-public abstract class Instant : MonoBehaviour, IGameEventListener
+public abstract class Instant : MonoBehaviour, IGameEventListener, ISerializable
 {
-    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     protected Flasher _flasher;
 
+    public string actualTrigger;
+    public string camouflageTrigger;
+    
     public FloatVariable sanity;
     public GameEvent sanityEvent;
-    public Sprite camouflagedSprite;
-    public Sprite sprite;
     public float sanityThreshold = 0.8f;
+    public bool aboveThreshold;
 
     private void OnEnable()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
         _flasher = GetComponent<Flasher>();
         sanityEvent.RegisterListener(this);
     }
@@ -29,21 +32,32 @@ public abstract class Instant : MonoBehaviour, IGameEventListener
     public void OnEventRaised()
     {
         if (_flasher.isFlashing) return;
-
-        _spriteRenderer.sprite = sanity.value >= sanityThreshold ? camouflagedSprite : sprite;
+        
+        _animator.SetTrigger(sanity.value >= sanityThreshold == aboveThreshold ? camouflageTrigger : actualTrigger);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        _spriteRenderer.sprite = sprite;
+        _animator.SetTrigger(actualTrigger);
 
-        _flasher.StartFlashing(() => Destroy(gameObject));
+        _flasher.StartFlashing(() => gameObject.SetActive(false));
 
         PlayerBehaviour player = other.gameObject.GetComponent<PlayerBehaviour>();
         Trigger(player);
     }
 
     protected abstract void Trigger(PlayerBehaviour player);
+    
+    public Dictionary<string, string> Serialize()
+    {
+        return new();
+    }
+
+    public void Deserialize(Dictionary<string, string> serialized)
+    {
+        gameObject.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    }
 }

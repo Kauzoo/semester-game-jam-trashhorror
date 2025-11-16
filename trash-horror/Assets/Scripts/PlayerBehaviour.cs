@@ -54,7 +54,7 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
 		
 		// animation
-		_animator = GetComponent<Animator>();
+		// _animator = GetComponent<Animator>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 
 	}
@@ -76,8 +76,8 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		}
 		
 		//animation trigger
-		_animator.SetBool("LookingForward",movement.y<=0);
-		_animator.SetBool("IsMoving",(Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
+		// _animator.SetBool("LookingForward",movement.y<=0);
+		// _animator.SetBool("IsMoving",(Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
 		
 
 		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
