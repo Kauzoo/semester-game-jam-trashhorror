@@ -19,13 +19,13 @@ public class Ghost : Hostile
         if (distance < waypointTolerance)
         {
             rb.linearVelocity = Vector2.zero;
-            patrolWaitTime -= Time.fixedDeltaTime;
+            patrolWaitTimer -= Time.fixedDeltaTime;
 
-            if (patrolWaitTime <= 0)
+            if (patrolWaitTimer <= 0)
             {
                 // Wait is over: Get a new point and reset timer
                 GenerateNewPatrolPoint();
-                patrolWaitTime = patrolWaitTimer;
+                patrolWaitTimer = patrolWaitTime;
             } 
         }
         else

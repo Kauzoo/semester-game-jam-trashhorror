@@ -23,17 +23,17 @@ public class Hunter : Hostile
         // 1. Check if we've arrived at our random destination
         if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {
-            patrolWaitTime -= Time.fixedDeltaTime;
+            patrolWaitTimer -= Time.fixedDeltaTime;
 
-            if (patrolWaitTime <= 0)
+            if (patrolWaitTimer <= 0)
             {
                 // Wait is over: Get a new point and reset timer
                 GenerateNewPatrolPoint();
-                patrolWaitTime = patrolWaitTimer;
+                patrolWaitTimer = patrolWaitTime;
             } 
         } else if (!agent.pathPending)
         {
-            patrolWaitTime -= Time.fixedDeltaTime;
+            patrolWaitTimer -= Time.fixedDeltaTime;
         }
     }
     

@@ -3,7 +3,7 @@ using System.Globalization;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class Creature : MonoBehaviour
+public abstract class Creature : MonoBehaviour, IEntity
 {
     [Header("CreatureSettings")] [Tooltip("How fast the creature moves during chase")]
     public float chaseSpeed = 3.0f;
@@ -138,4 +138,21 @@ public abstract class Creature : MonoBehaviour
     {
     }
     
+    public Dictionary<string, string> Serialize()
+    {
+        return new()
+        {
+            {"pos", gameObject.transform.position.Serialize() },
+            {"effectTimer", effectTimer.ToString(CultureInfo.CurrentCulture) },
+            {"patrolWaitTimer", patrolWaitTimer.ToString(CultureInfo.CurrentCulture) },
+        };
+    }
+
+    
+    public void Deserialize(Dictionary<string, string> serialized)
+    {
+        gameObject.GetComponent<Rigidbody2D>().position = Vector3Serialization.Deserialize(serialized["pos"]);
+        effectTimer = float.Parse(serialized["effectTimer"]);
+        patrolWaitTimer = float.Parse(serialized["patrolWaitTimer"]);
+    }
 }
