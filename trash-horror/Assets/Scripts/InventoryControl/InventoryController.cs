@@ -22,6 +22,11 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public bool HasKey()
+    {
+        return inventory.value > 0;
+    }
+
     [ContextMenu("Increase")]
     public void AddKey()
     {

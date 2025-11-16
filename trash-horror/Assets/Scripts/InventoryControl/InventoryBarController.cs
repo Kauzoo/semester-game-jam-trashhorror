@@ -32,7 +32,7 @@ public class InventoryBarController : MonoBehaviour, IGameEventListener
         {
             for (int i = currentInventory - 1; i >= inventory.value; i--)
             {
-                Destroy(gameObject.transform.GetChild(i));
+                Destroy(gameObject.transform.GetChild(i).gameObject);
             }
         }
         currentInventory = inventory.value;
