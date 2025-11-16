@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 49761082}
   - component: {fileID: 49761081}
   - component: {fileID: 49761080}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13703,7 +13703,7 @@ GameObject:
   - component: {fileID: 694191045}
   - component: {fileID: 694191044}
   - component: {fileID: 694191043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DecorationWithCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24812,7 +24812,7 @@ GameObject:
   - component: {fileID: 1630525430}
   - component: {fileID: 1630525429}
   - component: {fileID: 1630525428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
