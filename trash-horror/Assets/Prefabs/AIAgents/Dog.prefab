@@ -215,7 +215,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -309,5 +309,5 @@ MonoBehaviour:
   waypointTolerance: 1
   effectInterval: 1
   bodyCollider: {fileID: 4299751372484422267}
-  touchHeal: 0.1
-  sanityGain: 0.1
+  touchHeal: 0
+  sanityGain: 0.25

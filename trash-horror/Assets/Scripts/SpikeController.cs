@@ -4,6 +4,6 @@ public class SpikeController : Instant
 {
     protected override void Trigger(PlayerBehaviour player)
     {
-        // player.DealDamage(10);
+        HealthController.Instance.DecreaseHealth(1);
     }
 }

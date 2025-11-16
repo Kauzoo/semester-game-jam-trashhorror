@@ -33,10 +33,6 @@ public class SO_PostProcessData : ScriptableObject
     
     [Tooltip("Set depending on the value of fear bar (0-1) when the effect should start")]
     [Range(0, 1)]
-    public float colorAdjustmentsActivation;
-    
-    [Tooltip("Set depending on the value of fear bar (0-1) when the effect should start")]
-    [Range(0, 1)]
     public float chromaticAberrationActivation;
 
     private void OnValidate()
@@ -44,7 +40,6 @@ public class SO_PostProcessData : ScriptableObject
         lensDistortionActivation = RoundToStep(lensDistortionActivation);
         channelMixerActivation = RoundToStep(channelMixerActivation);
         whiteBalanceActivation = RoundToStep(whiteBalanceActivation);
-        colorAdjustmentsActivation = RoundToStep(colorAdjustmentsActivation);
         chromaticAberrationActivation = RoundToStep(chromaticAberrationActivation);
     }
     
