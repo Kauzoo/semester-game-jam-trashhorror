@@ -9,6 +9,8 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     public GameEvent onHealthChanged;
 
     public Image heart;
+    public Sprite heartSprite;
+    public Sprite emptyHeart;
     
     private readonly List<Image> _hearts = new();
     
@@ -27,6 +29,13 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     {
         onHealthChanged.UnregisterListener(this);
     }
+
+    [ContextMenu("Update Hearts")]
+    public void RemoveHeart()
+    {
+        health.value -= 0.25f;
+        onHealthChanged.Raise();
+    }
     
     public void OnEventRaised()
     {
@@ -40,8 +49,9 @@ public class HealthBar : MonoBehaviour, IGameEventListener
         foreach (Image heartImage in _hearts)
         {
             float thisHeartsHealth = Mathf.Min(currentHealth, 1f);
-            heartImage.fillAmount = Mathf.Ceil(thisHeartsHealth * 4f) / 4f;
+            heartImage.sprite = thisHeartsHealth == 0f ? emptyHeart : heartSprite;
+            heartImage.fillAmount = thisHeartsHealth == 0f ? 1 : Mathf.Ceil(thisHeartsHealth * 4f) / 4f;
             currentHealth -= thisHeartsHealth;
         }
     }
-}
+} 
