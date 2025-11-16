@@ -151,6 +151,10 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	private void Update()
 	{
 		CalmDown();
+		//if (rb.linearVelocity.magnitude > 2.0f)
+		//{
+			// Enable Audio Source
+		//}
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
