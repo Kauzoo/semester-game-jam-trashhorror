@@ -9,13 +9,12 @@ public class SanityController : MonoBehaviour
     public FloatVariable sanityData; // Sanity is a value between 0.0 and 1.0
     public GameEvent onSanityChanged;
     
-    // ---For Testing---
-    [Header("Randomizer Settings")]
-    [Tooltip("The minimum time (in seconds) between random sanity changes.")]
-    [SerializeField] private float minChangeInterval = 2.0f;
+    [Header("Sanity Decrease Settings")]
+    [Tooltip("The amount of sanity that decreases very timer")]
+    [SerializeField] private float decreaseSanityAmount = 0.1f;
     
-    [Tooltip("The maximum time (in seconds) between random sanity changes.")]
-    [SerializeField] private float maxChangeInterval = 8.0f;
+    [Tooltip("The amount of seconds for each decrease of sanity")]
+    [SerializeField] private float sanityDecreaseInterval = 1.0f;
 
     private float timer;
     
@@ -67,18 +66,25 @@ public class SanityController : MonoBehaviour
         }
     }
     
-    // // ---For Testing---
-    // Decrease Sanity by a random amount
+    // Decrease Sanity by amount
     private void Update()
     {
+
         // 1. Count down the timer
         timer -= Time.deltaTime;
 
         // 2. When the timer runs out...
         if (timer <= 0f)
         {
-            // 3. Calculate a new, completely random sanity value (between 0.0 and 1.0)
-            float newSanityValue = Random.Range(0f, 0.25f);
+            // If Sanity is 0, the player loses health
+            if (sanityData.value <= 0)
+            {
+                HealthController.Instance.DecreaseHealth(0.25f);
+            }
+            
+            // 3. Calculate a new sanity value
+            //float newSanityValue = Random.Range(0f, 0.25f);
+            float newSanityValue = decreaseSanityAmount;
 
             // 4. Update the global sanity data
             if (sanityData != null)
@@ -88,16 +94,10 @@ public class SanityController : MonoBehaviour
             }
 
             // 6. Reset the timer for the next random change
-            ResetTimer();
+            timer = 0;
+            timer += sanityDecreaseInterval;
         }
     }
-    
-    private void ResetTimer()
-    {
-        timer = Random.Range(minChangeInterval, maxChangeInterval);
-    }
-    
-    // ------
     
     
 }
