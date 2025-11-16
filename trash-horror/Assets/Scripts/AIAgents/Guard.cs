@@ -16,6 +16,7 @@ public class Guard : Hostile
     protected override void Chasing()
     {
         base.Chasing();
+        agent.speed = chaseSpeed;
         agent.destination = target.position;
     }
 }

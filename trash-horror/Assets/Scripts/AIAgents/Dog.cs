@@ -16,11 +16,14 @@ public class Dog : Friendly
     protected override void Chasing()
     {
         base.Chasing();
+        agent.speed = chaseSpeed;
         agent.destination = target.position;
     }
 
     protected override void Patrol()
     {
+        agent.speed = patrolSpeed;
+        
         // 1. Check if we've arrived at our random destination
         if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {

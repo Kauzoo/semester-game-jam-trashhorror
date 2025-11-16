@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc7a206b5ea461e86cd00593d7d57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hunter
-  chaseSpeed: 4
-  patrolSpeed: 0
+  chaseSpeed: 20
+  patrolSpeed: 1
   detectionRadius: 10
   patrolRadius: 5
   patrolWaitTime: 3
@@ -221,7 +221,7 @@ MonoBehaviour:
   effectInterval: 1
   bodyCollider: {fileID: 1186464919308914899}
   touchDamage: 0.5
-  sanityLoss: 0.25
+  sanityLoss: 0
 --- !u!114 &806670335401016650
 MonoBehaviour:
   m_ObjectHideFlags: 0
