@@ -7,7 +7,7 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
     private bool _pickedUp;
     public bool isVisible = true;
 
-    private void OnEnable()
+    private void Awake()
     {
         gameObject.SetActive(isVisible);
     }
@@ -36,7 +36,9 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
 
     public void On()
     {
+        Debug.Log("On");
         if (_pickedUp) return;
+        Debug.Log("On2");
 
         gameObject.SetActive(true);
     }
