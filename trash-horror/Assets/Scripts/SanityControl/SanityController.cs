@@ -18,6 +18,7 @@ public class SanityController : MonoBehaviour
 
     // Is the Decrease of sanity slowed down? Friendly AIAgents can do this
     private bool lowerSanityDecrease = false;
+    public float LowerSanityDecreasePercentage = 0.75f;
 
     private float timer;
     
@@ -45,7 +46,7 @@ public class SanityController : MonoBehaviour
     {
         if (lowerSanityDecrease)
         {
-            amount = amount * 0.5f;
+            amount = amount * LowerSanityDecreasePercentage;
         }
 
         if (sanityData.value - amount <= 0)
