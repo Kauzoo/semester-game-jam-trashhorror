@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   healthData: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
+  onDeathEvent: {fileID: 11400000, guid: 083f0cde8fd31cc45b399fd578af813b, type: 2}
+  maxHealth: 3

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour, IGameEventListener
 {
-    public GameEvent deathEvent;
+    public GameEvent respawnEvent;
     public DictionaryVariable savedGameObjects;
     public List<GameObject> gameObjectsToSave;
     
@@ -13,12 +13,12 @@ public class CheckpointController : MonoBehaviour, IGameEventListener
 
     private void OnEnable()
     {
-        deathEvent.RegisterListener(this);
+        respawnEvent.RegisterListener(this);
     }
     
     private void OnDisable()
     {
-        deathEvent.UnregisterListener(this);
+        respawnEvent.UnregisterListener(this);
         savedGameObjects.value.Clear();
         _isActive = false;
     }
@@ -47,6 +47,7 @@ public class CheckpointController : MonoBehaviour, IGameEventListener
 
     public void OnEventRaised()
     {
+        // TODO Animation ?
         foreach (var gameObj in gameObjectsToSave)
         {
             DeserializeGameObject(gameObj, savedGameObjects.value[gameObj.name]);

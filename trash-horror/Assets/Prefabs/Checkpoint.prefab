@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f83798d5ca4a0bbdea401a9f17ded5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
-  deathEvent: {fileID: 11400000, guid: 083f0cde8fd31cc45b399fd578af813b, type: 2}
+  respawnEvent: {fileID: 11400000, guid: ab2b310cfbe93c84591fa6fb342285b1, type: 2}
   savedGameObjects: {fileID: 11400000, guid: ad3efbacc3e26fe4f82ad712c2aa4eed, type: 2}
   gameObjectsToSave: []

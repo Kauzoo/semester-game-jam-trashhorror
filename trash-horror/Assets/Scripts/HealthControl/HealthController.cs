@@ -8,6 +8,7 @@ public class HealthController : MonoBehaviour
 
     public FloatVariable healthData;
     public GameEvent onHealthChanged;
+    public GameEvent onDeathEvent;
     public float maxHealth = 3;
 
     private void Awake()
@@ -38,5 +39,6 @@ public class HealthController : MonoBehaviour
     {
         healthData.value = health;
         onHealthChanged.Raise();
+        if (healthData.value == 0) onDeathEvent.Raise();
     }
 }
