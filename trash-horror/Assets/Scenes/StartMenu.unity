@@ -498,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   startButton: {fileID: 2104630680}
   quitButton: {fileID: 1267867383}
-  defaultScene: MatthiasScene
+  defaultScene: Level1
 --- !u!1 &1441933701
 GameObject:
   m_ObjectHideFlags: 0
