@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -25,7 +26,11 @@ public class SanityController : MonoBehaviour, ISerializable
     private float timer;
     
     // ------
-    
+    private void Start()
+    {
+        sanityData.value = 1;
+    }
+
     private void Awake()
     {
         // This is the core singleton logic.

@@ -57,7 +57,6 @@ public class HealthController : MonoBehaviour, ISerializable
     {
         if (_dead) return;
         
-        Debug.Log("New Player Health: " + health);
         healthData.value = health;
         onHealthChanged.Raise();
         
