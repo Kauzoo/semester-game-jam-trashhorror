@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -430.03867, y: 179.17535}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2159381370163605853
 MonoBehaviour:
@@ -77,6 +77,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   health: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
-  heart: {fileID: 7870601214192670923, guid: 79efade306647884990ed05649531649, type: 3}
-  heartSprite: {fileID: 3240154900095886977, guid: 0590a1378655e9440a51625c515ea12a, type: 3}
-  emptyHeart: {fileID: -6599270480310005429, guid: 0590a1378655e9440a51625c515ea12a, type: 3}
+  heart: {fileID: 4325775637420343914, guid: 79efade306647884990ed05649531649, type: 3}

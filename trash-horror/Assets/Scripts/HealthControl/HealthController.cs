@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,13 +23,18 @@ public class HealthController : MonoBehaviour, ISerializable
         if (Instance == null)
         {
             Instance = this;
-            healthData.value = maxHealth;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        healthData.value = maxHealth;
+        onHealthChanged.Raise();
     }
 
     public void DecreaseHealth(float amount)
