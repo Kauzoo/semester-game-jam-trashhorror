@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour, ISerializable
+public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 {
 
 	private Vector2 movement;
@@ -17,7 +17,10 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private InputAction m_movement;
 	public static PlayerBehaviour instance;
-	
+	private static readonly int IsHurt = Animator.StringToHash("IsHurt");
+	private static readonly int LookingForward = Animator.StringToHash("LookingForward");
+	private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+
 
 	private InputAction m_calmdown;
 
@@ -27,6 +30,8 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	private SanityController sanityController;
 
 	private List<IInteractable> interactables = new List<IInteractable>();
+	public FloatVariable healthData;
+	public GameEvent onHealthChanged;
     
     //Animation
     private Animator _animator;
@@ -36,11 +41,13 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	private void OnEnable()
 	{
 		InputActions.FindActionMap("Player").Enable();
+		onHealthChanged.RegisterListener(this);
 	}
 
 	private void OnDisable()
 	{
 		InputActions.FindActionMap("Player").Disable();
+		onHealthChanged.UnregisterListener(this);
 	}
 
 
@@ -54,7 +61,7 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
 		
 		// animation
-		// _animator = GetComponent<Animator>();
+		_animator = GetComponent<Animator>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 
 	}
@@ -76,8 +83,8 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		}
 		
 		//animation trigger
-		// _animator.SetBool("LookingForward",movement.y<=0);
-		// _animator.SetBool("IsMoving",(Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
+		_animator.SetBool(LookingForward, movement.y<=0);
+		_animator.SetBool(IsMoving, (Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
 		
 
 		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
@@ -151,5 +158,12 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	public void Deserialize(Dictionary<string, string> serialized)
 	{
 		transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
+	}
+
+	private float _oldHealth = -1;
+	public void OnEventRaised()
+	{
+		_animator.SetTrigger(IsHurt);
+		_oldHealth = healthData.value;
 	}
 }
