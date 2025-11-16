@@ -76,10 +76,9 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 		m_calmdown = InputSystem.actions.FindAction("Calm down");
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
 		
-		// animation
+		// Animation
 		_animator = GetComponent<Animator>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
-
 	}
 
 
@@ -141,7 +140,17 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 
 		}
 	}
-	
+
+	public void AddFriendlySource()
+	{
+		friendlyCount++;
+	}
+
+	public void RemoveFriendlySource()
+	{
+		friendlyCount = Mathf.Max(0, friendlyCount - 1);
+	}
+
 	private void FixedUpdate()
 	{
 		Movement();
@@ -160,14 +169,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 		{
 			interactables.Add(interactable);
 		}
-		
-		// Check if the object that entered has the "Friendly" tag
-		if (other.CompareTag("Friendly"))
-		{
-			// If yes, add one to our counter
-			friendlyCount++;
-			Debug.Log("Entered friendly aura. Count: " + friendlyCount);
-		}
 	}
 
 	public void OnTriggerExit2D(Collider2D other)
@@ -176,16 +177,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 		if (interactable != null)
 		{
 			interactables.Remove(interactable);
-		}
-		
-		// Check if the object that left has the "Friendly" tag
-		if (other.CompareTag("Friendly"))
-		{
-			// If yes, subtract one from our counter
-			friendlyCount--;
-			// (We use Mathf.Max to make sure it never goes below 0)
-			friendlyCount = Mathf.Max(0, friendlyCount); 
-			Debug.Log("Exited friendly aura. Count: " + friendlyCount);
 		}
 	}
 
