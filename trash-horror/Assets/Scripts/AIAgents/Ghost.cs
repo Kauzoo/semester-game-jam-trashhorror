@@ -13,7 +13,7 @@ public class Ghost : Hostile
         Vector2 direction = (target.position - transform.position).normalized;
         rb.linearVelocity = direction * chaseSpeed;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
     }
 
     protected override void Patrol()
