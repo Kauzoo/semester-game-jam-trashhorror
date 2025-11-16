@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3112675908663263623}
   - component: {fileID: 9126550738895414689}
   - component: {fileID: 7334174438888514793}
-  - component: {fileID: 806670335401016650}
+  - component: {fileID: -1936927004492325620}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -82,11 +82,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -959473027
+  m_SortingLayer: 3
   m_SortingOrder: 2
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4509804, g: 0.5560034, b: 0.89411765, a: 1}
+  m_Sprite: {fileID: -3581948151272049692, guid: 685da177a8ff2514a84dcfe5ddb519e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5625, y: 3.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc7a206b5ea461e86cd00593d7d57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hunter
-  chaseSpeed: 4
-  patrolSpeed: 0
+  chaseSpeed: 3.5
+  patrolSpeed: 2
   detectionRadius: 10
   patrolRadius: 5
   patrolWaitTime: 3
@@ -221,24 +221,29 @@ MonoBehaviour:
   effectInterval: 1
   bodyCollider: {fileID: 1186464919308914899}
   touchDamage: 0.5
-  sanityLoss: 0.25
---- !u!114 &806670335401016650
-MonoBehaviour:
+  sanityLoss: 0
+--- !u!95 &-1936927004492325620
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3698289539141878593}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b1305e311404567acc01dfc509e045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SanitySpriteSwapper
-  sanityData: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
-  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
-  camouflagedSprite: {fileID: 0}
-  normalSprite: {fileID: 0}
-  sanityThreshold: 0.8
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbb9b34a9020bea4e9369195258db90f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6881406560360998467
 GameObject:
   m_ObjectHideFlags: 0

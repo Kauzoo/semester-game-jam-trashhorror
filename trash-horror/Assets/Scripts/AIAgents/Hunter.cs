@@ -4,22 +4,27 @@ using UnityEngine.AI;
 public class Hunter : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
+    private Animator _animator;
     protected override void Start()
     {
         base.Start();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        _animator = GetComponent<Animator>();
+        _animator.SetFloat("Speed",agent.speed);
     }
 
     protected override void Chasing()
     {
         base.Chasing();
+        agent.speed = chaseSpeed;
         agent.destination = target.position;
     }
 
     protected override void Patrol()
     {
+        agent.speed = patrolSpeed;
         // 1. Check if we've arrived at our random destination
         if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {

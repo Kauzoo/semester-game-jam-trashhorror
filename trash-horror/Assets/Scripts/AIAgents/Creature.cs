@@ -33,10 +33,15 @@ public abstract class Creature : MonoBehaviour, IEntity
     protected float patrolWaitTimer;        // Timer for waiting at a point
     
     public Collider2D bodyCollider;
+
+    private Animator _animator;
+    private SpriteRenderer _renderer;
     
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+       _renderer = GetComponent<SpriteRenderer>();
             
         // Find the trigger collider and set its radius
         foreach (var col in GetComponents<CircleCollider2D>())
@@ -100,6 +105,7 @@ public abstract class Creature : MonoBehaviour, IEntity
     
     protected void FixedUpdate()
     {
+        
         if (effectTimer > 0)
         {
             effectTimer -= Time.fixedDeltaTime;
@@ -117,16 +123,29 @@ public abstract class Creature : MonoBehaviour, IEntity
         {
             Patrol();
         }
+        
+       
     }
     
     protected virtual void Chasing()
     {
+        
         patrolWaitTimer = 0;
         
         // If Chasing look at target
         Vector3 direction = target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        
+        _animator.SetBool("Running",Mathf.Abs(direction.x)>0 || Mathf.Abs(direction.y)>0);
+        
+        
+        if (direction.x > 0)
+        {
+            _renderer.flipX = true;
+        }
+        
+        //should not affect anything
+        //transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
     protected virtual void Patrol()

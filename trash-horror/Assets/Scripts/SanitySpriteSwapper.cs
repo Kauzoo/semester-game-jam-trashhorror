@@ -22,11 +22,18 @@ public class SanitySpriteSwapper : MonoBehaviour, IGameEventListener
              "If sanity is >= this, it shows the camouflaged sprite.")]
     [SerializeField] private float sanityThreshold = 0.8f;
 
+    private Animator _animator;
+
     private SpriteRenderer spriteRenderer;
 
     // When the component is first enabled (or game starts)
     private void OnEnable()
     {
+        
+        //_
+        _animator.GetComponent<Animator>();
+        
+        
         // Get the SpriteRenderer on this same GameObject
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -78,9 +85,10 @@ public class SanitySpriteSwapper : MonoBehaviour, IGameEventListener
         // This is the core logic:
         // Check if sanity value is high
         bool isSane = (sanityData.value >= sanityThreshold);
-
+        _animator.SetBool("isSane",isSane);
         // Set the sprite based on the check.
         // Use the camouflagedSprite if sane, otherwise use the normalSprite.
         spriteRenderer.sprite = isSane ? camouflagedSprite : normalSprite;
+        
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Dog : Friendly
 {
     private UnityEngine.AI.NavMeshAgent agent;
+    
 
     protected override void Start()
     {
@@ -11,16 +12,22 @@ public class Dog : Friendly
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
+
     }
 
     protected override void Chasing()
     {
         base.Chasing();
+        agent.speed = chaseSpeed;
         agent.destination = target.position;
+        
     }
 
     protected override void Patrol()
     {
+        agent.speed = patrolSpeed;
+        
         // 1. Check if we've arrived at our random destination
         if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {
@@ -36,6 +43,8 @@ public class Dog : Friendly
         {
             patrolWaitTimer -= Time.fixedDeltaTime;
         }
+        
+        
     }
     
     protected virtual void GenerateNewPatrolPoint()

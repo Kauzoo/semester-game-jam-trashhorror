@@ -16,6 +16,14 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     private void OnEnable()
     {
         onHealthChanged.RegisterListener(this);
+        
+        for (int i = 0; i < Mathf.Ceil(health.value); i++)
+        {
+            GameObject obj = Instantiate(heart, gameObject.transform, false);
+            Image img = obj.GetComponentsInChildren<Image>().Last();
+            _hearts.Add(img);
+        }
+        UpdateHearts();
     }
 
     private void OnDisable()
