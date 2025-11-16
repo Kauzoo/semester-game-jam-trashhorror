@@ -4,9 +4,6 @@ using Random = UnityEngine.Random;
 
 public class Ghost : Hostile
 {
-    
-    
-    
     protected override void Chasing()
     {
         base.Chasing();

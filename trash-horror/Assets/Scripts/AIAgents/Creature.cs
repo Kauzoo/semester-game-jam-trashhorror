@@ -34,7 +34,7 @@ public abstract class Creature : MonoBehaviour, IEntity
     
     public Collider2D bodyCollider;
 
-    private Animator _animator;
+    protected Animator _animator;
     private SpriteRenderer _renderer;
     
     protected virtual void Start()

@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class Hunter : Hostile
 {
     private UnityEngine.AI.NavMeshAgent agent;
-    private Animator _animator;
     protected override void Start()
     {
         base.Start();
