@@ -3,7 +3,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(fileName = "SO_PostProcessData", menuName = "Scriptable Objects/SO_PostProcessData")]
@@ -33,25 +33,40 @@ public class SO_PostProcessData : ScriptableObject
     
     [Tooltip("Set depending on the value of fear bar (0-1) when the effect should start")]
     [Range(0, 1)]
-    public float colorAdjustmentsActivation;
+    public float chromaticAberrationActivation;
     
+    [FormerlySerializedAs("lightSpotManipulation")]
     [Tooltip("Set depending on the value of fear bar (0-1) when the effect should start")]
     [Range(0, 1)]
-    public float chromaticAberrationActivation;
+    public float spotLightManipulation;
 
     private void OnValidate()
     {
         lensDistortionActivation = RoundToStep(lensDistortionActivation);
         channelMixerActivation = RoundToStep(channelMixerActivation);
         whiteBalanceActivation = RoundToStep(whiteBalanceActivation);
-        colorAdjustmentsActivation = RoundToStep(colorAdjustmentsActivation);
         chromaticAberrationActivation = RoundToStep(chromaticAberrationActivation);
+        spotLightManipulation = RoundToStep(spotLightManipulation);
     }
     
     private float RoundToStep(float value)
     {
         return Mathf.Round(value / steps) * steps;
     }
+
+    [System.Serializable]
+    public struct spotLight
+    {
+        public Light2D light;
+        public AnimationCurve curve;
+        
+        [NonSerialized]
+        public float t;
+        
+        [NonSerialized]
+        public CurveStates curveState;
+    }
+    
     
     [System.Serializable]
     public struct LensDistortionData

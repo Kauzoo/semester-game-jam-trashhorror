@@ -10,6 +10,9 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     
     [SerializeField]
     private Volume globalVolume;
+
+    [SerializeField] 
+    private SO_PostProcessData.spotLight spotLight;
     
     [SerializeField]
     private GameEvent onSanityChanged;
@@ -62,6 +65,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     // Update is called once per frame
     void Update()
     {
+        HandleSpotlight();
         HandleLensDistortion();
         HandleChannelMixer();
         HandleWhiteBalance();
@@ -69,6 +73,25 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
         
     }
 
+    private void HandleSpotlight()
+    {
+        if(spotLight.t > 0.5f)
+            spotLight.t = 0.5f;
+        if(spotLight.t < 0f)
+            spotLight.t = 0f;
+
+        switch (spotLight.curveState)
+        {
+            case SO_PostProcessData.CurveStates.Increas:
+                spotLight.t += Time.deltaTime;
+                break;
+            case SO_PostProcessData.CurveStates.Decreas:
+                spotLight.t -= Time.deltaTime;
+                break;
+        }
+        
+        spotLight.light.pointLightOuterRadius = spotLight.curve.Evaluate(spotLight.t);
+    }
 
     private void HandleLensDistortion()
     {
@@ -161,41 +184,51 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     {
         if (onSanityChanged && sanityData)
         {
-            if (sanityData.value > postProcessData.chromaticAberrationActivation)
+            if (sanityData.value > postProcessData.spotLightManipulation)
+            {
+                spotLight.curveState = SO_PostProcessData.CurveStates.Increas;
+            }
+            
+            else if (sanityData.value < postProcessData.spotLightManipulation)
+            {
+                spotLight.curveState = SO_PostProcessData.CurveStates.Decreas;
+            }
+            
+            if (sanityData.value < postProcessData.chromaticAberrationActivation)
             {
                 chromaticAberrationData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            else if (sanityData.value < postProcessData.chromaticAberrationActivation)
+            else if (sanityData.value > postProcessData.chromaticAberrationActivation)
             {
                 chromaticAberrationData.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
 
-            if (sanityData.value > postProcessData.lensDistortionActivation)
+            if (sanityData.value < postProcessData.lensDistortionActivation)
             {
                 lensDistortionData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
             
-            else if (sanityData.value < postProcessData.lensDistortionActivation)
+            else if (sanityData.value > postProcessData.lensDistortionActivation)
             {
                 lensDistortionData.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
 
-            if (sanityData.value > postProcessData.channelMixerActivation)
+            if (sanityData.value < postProcessData.channelMixerActivation)
             {
                 channelMixerData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
             
-            else if (sanityData.value < postProcessData.channelMixerActivation)
+            else if (sanityData.value > postProcessData.channelMixerActivation)
             {
                 channelMixerData.curveState = SO_PostProcessData.CurveStates.Neutral;
             }
 
-            if (sanityData.value > postProcessData.whiteBalanceActivation)
+            if (sanityData.value < postProcessData.whiteBalanceActivation)
             {
                 whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
             
-            else if (sanityData.value < postProcessData.whiteBalanceActivation)
+            else if (sanityData.value > postProcessData.whiteBalanceActivation)
             {
                 whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
