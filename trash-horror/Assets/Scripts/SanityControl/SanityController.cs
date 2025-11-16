@@ -16,6 +16,9 @@ public class SanityController : MonoBehaviour
     [Tooltip("The amount of seconds for each decrease of sanity")]
     [SerializeField] private float sanityDecreaseInterval = 1.0f;
 
+    // Is the Decrease of sanity slowed down? Friendly AIAgents can do this
+    private bool lowerSanityDecrease = false;
+
     private float timer;
     
     // ------
@@ -40,6 +43,11 @@ public class SanityController : MonoBehaviour
 
     public void DecreaseSanity(float amount)
     {
+        if (lowerSanityDecrease)
+        {
+            amount = amount * 0.5f;
+        }
+
         if (sanityData.value - amount <= 0)
         {
            sanityData.value = 0;
@@ -50,6 +58,11 @@ public class SanityController : MonoBehaviour
             sanityData.value -= amount;
             onSanityChanged.Raise();
         }
+    }
+
+    public void SetLowerSanityDecrease(bool lowerSanityDecrease)
+    {
+        this.lowerSanityDecrease = lowerSanityDecrease;
     }
 
     public void IncreaseSanity(float amount)
@@ -69,7 +82,6 @@ public class SanityController : MonoBehaviour
     // Decrease Sanity by amount
     private void Update()
     {
-
         // 1. Count down the timer
         timer -= Time.deltaTime;
 
@@ -81,23 +93,21 @@ public class SanityController : MonoBehaviour
             {
                 HealthController.Instance.DecreaseHealth(0.25f);
             }
-            
-            // 3. Calculate a new sanity value
-            //float newSanityValue = Random.Range(0f, 0.25f);
-            float newSanityValue = decreaseSanityAmount;
-
-            // 4. Update the global sanity data
-            if (sanityData != null)
+            else
             {
-                DecreaseSanity(newSanityValue);
-                Debug.Log($"Sanity changed to: {sanityData.value}");
-            }
+                // 3. Calculate a new sanity value
+                //float newSanityValue = Random.Range(0f, 0.25f);
+                float newSanityValue = decreaseSanityAmount;
 
+                // 4. Update the global sanity data
+                if (sanityData != null)
+                {
+                    DecreaseSanity(newSanityValue);
+                    Debug.Log($"Sanity changed to: {sanityData.value}");
+                }
+            }
             // 6. Reset the timer for the next random change
-            timer = 0;
             timer += sanityDecreaseInterval;
         }
     }
-    
-    
 }

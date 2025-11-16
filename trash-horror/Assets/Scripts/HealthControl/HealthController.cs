@@ -36,8 +36,6 @@ public class HealthController : MonoBehaviour
 
     private void SetHealth(float health)
     {
-        if (!(Mathf.Abs(health - healthData.value) < 0.001)) return;
-        
         healthData.value = health;
         onHealthChanged.Raise();
     }
