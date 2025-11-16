@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private InputAction m_movement;
 	public static PlayerBehaviour instance;
+	
 
 	private InputAction m_calmdown;
 
@@ -27,6 +28,11 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private List<String> inventory = new List<String>();
 	private List<IInteractable> interactables = new List<IInteractable>();
+    
+    //Animation
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    //TODO: add hurt animation 
 
 	private void OnEnable()
 	{
@@ -47,6 +53,11 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		m_movement = InputSystem.actions.FindAction("Move");
 		m_calmdown = InputSystem.actions.FindAction("Calm down");
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
+		
+		// animation
+		_animator = GetComponent<Animator>();
+		_spriteRenderer = GetComponent<SpriteRenderer>();
+
 	}
 
 
@@ -54,6 +65,21 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	{
 
 		movement = m_movement.ReadValue<Vector2>();
+
+		//flip sprite 
+		if (movement.x < 0)
+		{
+			_spriteRenderer.flipX=true;
+		}
+		else
+		{
+			_spriteRenderer.flipX=false;
+		}
+		
+		//animation trigger
+		_animator.SetBool("LookingForward",movement.y<=0);
+		_animator.SetBool("IsMoving",(Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
+		
 
 		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
 		/*
