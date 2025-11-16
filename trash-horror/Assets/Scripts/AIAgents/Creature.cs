@@ -151,7 +151,7 @@ public abstract class Creature : MonoBehaviour, IEntity
     
     public void Deserialize(Dictionary<string, string> serialized)
     {
-        gameObject.GetComponent<Rigidbody2D>().position = Vector3Serialization.Deserialize(serialized["pos"]);
+        gameObject.transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
         effectTimer = float.Parse(serialized["effectTimer"]);
         patrolWaitTimer = float.Parse(serialized["patrolWaitTimer"]);
     }

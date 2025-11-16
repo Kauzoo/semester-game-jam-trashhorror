@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
-public class SanityController : MonoBehaviour
+public class SanityController : MonoBehaviour, ISerializable
 {
     // --- SINGLETON ---
     public static SanityController Instance { get; private set; }
@@ -110,5 +112,19 @@ public class SanityController : MonoBehaviour
             // 6. Reset the timer for the next random change
             timer += sanityDecreaseInterval;
         }
+    }
+
+    public Dictionary<string, string> Serialize()
+    {
+        return new()
+        {
+            { "sanity", sanityData.value.ToString(CultureInfo.CurrentCulture) }
+        };
+    }
+
+    public void Deserialize(Dictionary<string, string> serialized)
+    {
+        sanityData.value = float.Parse(serialized["sanity"], CultureInfo.InvariantCulture);
+        onSanityChanged.Raise();
     }
 }

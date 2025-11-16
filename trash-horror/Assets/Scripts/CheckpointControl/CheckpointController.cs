@@ -47,7 +47,8 @@ public class CheckpointController : MonoBehaviour, IGameEventListener
 
     public void OnEventRaised()
     {
-        // TODO Animation ?
+        Debug.Log("Respawning...");
+        
         foreach (var gameObj in gameObjectsToSave)
         {
             DeserializeGameObject(gameObj, savedGameObjects.value[gameObj.name]);
