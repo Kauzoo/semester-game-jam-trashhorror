@@ -10,6 +10,7 @@ public class Guard : Hostile
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
     }
 
     protected override void Chasing()
