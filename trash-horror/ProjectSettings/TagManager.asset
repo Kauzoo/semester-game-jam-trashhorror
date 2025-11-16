@@ -50,5 +50,8 @@ TagManager:
   - name: Foreground
     uniqueID: 3335494269
     locked: 0
+  - name: Outline
+    uniqueID: 656069267
+    locked: 0
   m_RenderingLayers:
   - Default

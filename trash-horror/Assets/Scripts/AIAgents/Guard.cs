@@ -20,6 +20,7 @@ public class Guard : Hostile
     {
         _animator.SetFloat("Speed",agent.speed);
         base.Chasing();
+        agent.speed = chaseSpeed;
         agent.destination = target.position;
     }
 }

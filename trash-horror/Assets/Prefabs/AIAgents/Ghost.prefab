@@ -316,7 +316,7 @@ MonoBehaviour:
   effectInterval: 1
   bodyCollider: {fileID: 5582369874564467668}
   touchDamage: 0.5
-  sanityLoss: 0.2
+  sanityLoss: 0
 --- !u!114 &1959533222461787293
 MonoBehaviour:
   m_ObjectHideFlags: 0
