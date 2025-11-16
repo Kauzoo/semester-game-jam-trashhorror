@@ -20,6 +20,8 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	private Vector2 movement;
 	private Rigidbody2D rb;
 
+	public AudioSource steps;
+
 	public Camera camera;
 
 	public InputActionAsset InputActions;
@@ -160,6 +162,14 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	private void Update()
 	{
 		CalmDown();
+		if (rb.linearVelocity.magnitude > 3.0f)
+		{
+			steps.enabled = true;
+		}
+		else
+		{
+			steps.enabled = false;
+		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
