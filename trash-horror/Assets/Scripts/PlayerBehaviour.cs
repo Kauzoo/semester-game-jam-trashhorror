@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private InputAction m_movement;
 	public static PlayerBehaviour instance;
+	
 
 	private InputAction m_calmdown;
 
@@ -25,8 +26,12 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private SanityController sanityController;
 
-	private List<String> inventory = new List<String>();
 	private List<IInteractable> interactables = new List<IInteractable>();
+    
+    //Animation
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    //TODO: add hurt animation 
 
 	private void OnEnable()
 	{
@@ -47,6 +52,11 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		m_movement = InputSystem.actions.FindAction("Move");
 		m_calmdown = InputSystem.actions.FindAction("Calm down");
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
+		
+		// animation
+		// _animator = GetComponent<Animator>();
+		_spriteRenderer = GetComponent<SpriteRenderer>();
+
 	}
 
 
@@ -54,6 +64,21 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	{
 
 		movement = m_movement.ReadValue<Vector2>();
+
+		//flip sprite 
+		if (movement.x < 0)
+		{
+			_spriteRenderer.flipX=true;
+		}
+		else
+		{
+			_spriteRenderer.flipX=false;
+		}
+		
+		//animation trigger
+		// _animator.SetBool("LookingForward",movement.y<=0);
+		// _animator.SetBool("IsMoving",(Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
+		
 
 		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
 		/*
@@ -77,7 +102,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	{
 		if (!m_calmdown.WasPressedThisFrame()) return;
 
-		Debug.Log("[" + string.Join(", ", inventory.ToArray()) + "]");
 		Debug.Log("Calmed down");
 		SanityController.Instance.IncreaseSanity(0.1f);
 	}
@@ -91,11 +115,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	private void Update()
 	{
 		CalmDown();
-	}
-
-	public void AddToInventory(string item)
-	{
-		inventory.Add(item);
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
@@ -126,14 +145,11 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		return new()
 		{
 			{"pos", transform.position.Serialize()},
-			{"inv", string.Join(",", inventory.ToArray())},
 		};
 	}
 
 	public void Deserialize(Dictionary<string, string> serialized)
 	{
 		transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
-		string inv = serialized["inv"];
-		inventory = string.IsNullOrWhiteSpace(inv) ? new List<string>() : inv.Split(',').ToList();
 	}
-}	
+}

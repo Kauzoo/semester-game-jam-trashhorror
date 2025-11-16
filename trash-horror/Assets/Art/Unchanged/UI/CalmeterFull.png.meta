@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 0590a1378655e9440a51625c515ea12a
+guid: ab3f1d3fb5188c045b51787ea7d7cef7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3240154900095886977
-    second: item-sheet_0
+      213: -3037404339841898407
+    second: CalmeterFull_0
   - first:
-      213: 2625484144420945894
-    second: item-sheet_1
+      213: -8679086174310769539
+    second: CalmeterFull_1
   - first:
-      213: -8808992509902218965
-    second: item-sheet_2
-  - first:
-      213: 8112189194414275672
-    second: item-sheet_3
-  - first:
-      213: -6599270480310005429
-    second: item-sheet_4
-  - first:
-      213: -7069227745558553332
-    second: item-sheet_5
+      213: 5200722375817729789
+    second: CalmeterFull_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,17 +102,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item-sheet_0
+      name: CalmeterFull_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 22
-        height: 22
+        x: 1
+        y: 193
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 186e47de6b757fc20800000000000000
-      internalID: 3240154900095886977
+      spriteID: 9586e7488d8f8d5d0800000000000000
+      internalID: -3037404339841898407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item-sheet_1
+      name: CalmeterFull_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 3
-        width: 26
-        height: 26
+        x: 2
+        y: 27
+        width: 28
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,17 +156,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ef71af3be79f6420800000000000000
-      internalID: 2625484144420945894
+      spriteID: d7cd335bb11bd8780800000000000000
+      internalID: -8679086174310769539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item-sheet_2
+      name: CalmeterFull_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 1
         y: 1
         width: 30
         height: 30
@@ -174,74 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b29933afbfb20c580800000000000000
-      internalID: -8808992509902218965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: item-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 0
-        width: 34
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85c33d39719449070800000000000000
-      internalID: 8112189194414275672
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: item-sheet_4
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 1
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b41966c667eaa64a0800000000000000
-      internalID: -6599270480310005429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: item-sheet_5
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 3
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0d95add1de05ed90800000000000000
-      internalID: -7069227745558553332
+      spriteID: df69a0a327dac2840800000000000000
+      internalID: 5200722375817729789
       vertices: []
       indices: 
       edges: []
@@ -260,12 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      item-sheet_0: 3240154900095886977
-      item-sheet_1: 2625484144420945894
-      item-sheet_2: -8808992509902218965
-      item-sheet_3: 8112189194414275672
-      item-sheet_4: -6599270480310005429
-      item-sheet_5: -7069227745558553332
+      CalmeterFull_0: -3037404339841898407
+      CalmeterFull_1: -8679086174310769539
+      CalmeterFull_2: 5200722375817729789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

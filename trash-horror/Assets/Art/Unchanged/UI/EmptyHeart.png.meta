@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: bdcf03e75340a7044aa06112b2d07518
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+guid: 57e0a5a5f6ab5c747ba2e62cfb624720
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4569161321755363472
-    second: blob_0
+      213: 1365539031471768751
+    second: candle_0
+========
+guid: 2202072eedaff7f4085745864039ff64
+TextureImporter:
+  internalIDToNameTable:
   - first:
-      213: -2547599669572540664
-    second: blob_1
+      213: -705465144167411356
+    second: EmptyHeart_0
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,49 +105,80 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+========
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blob_0
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+      name: candle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+========
+      name: EmptyHeart_0
       rect:
         serializedVersion: 2
         x: 1
         y: 1
         width: 30
         height: 30
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 098cea0830ce86f30800000000000000
-      internalID: 4569161321755363472
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+      spriteID: fa44ec1a38e53f210800000000000000
+      internalID: 1365539031471768751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blob_1
+      name: candle_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1
-        width: 30
-        height: 30
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 807e939299b15acd0800000000000000
-      internalID: -2547599669572540664
+      spriteID: c0439d015a8f33141a391f6e70a3cab5
+      internalID: -1432759565
+========
+      spriteID: 4615b78603fa536f0800000000000000
+      internalID: -705465144167411356
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
       vertices: []
       indices: 
       edges: []
@@ -150,7 +187,11 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+    spriteID: 957f0bdae18b02f47a27dd1e77bd92a1
+========
     spriteID: 
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
     internalID: 0
     vertices: []
     indices: 
@@ -158,10 +199,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      blob_0: 4569161321755363472
-      blob_1: -2547599669572540664
+<<<<<<<< HEAD:trash-horror/Assets/Art/Decoration/candle.png.meta
+      candle_0: 1365539031471768751
+      candle_1: -1432759565
+========
+      EmptyHeart_0: -705465144167411356
+>>>>>>>> cfaf32e90ffa6caab128a4ae15c6bf8eab77129a:trash-horror/Assets/Art/Unchanged/UI/EmptyHeart.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5302939090432913284}
   - component: {fileID: 3954646676596583526}
   - component: {fileID: 6147198992911424648}
+  - component: {fileID: -6551644503450609821}
   m_Layer: 0
   m_Name: HealthPot
   m_TagString: Untagged
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 53718050245491368, guid: 4b4baddd88f166247b4008064daa43c7, type: 3}
+  m_Sprite: {fileID: 8112189194414275672, guid: 0590a1378655e9440a51625c515ea12a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +132,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.31}
+    oldSize: {x: 0.34, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,11 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e721f94cf800943b4cd97c0712bf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotController
+  actualTrigger: SwitchToItem
+  camouflageTrigger: SwitchToSpikes
   sanity: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
   sanityEvent: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
-  camouflagedSprite: {fileID: 53718050245491368, guid: 4b4baddd88f166247b4008064daa43c7, type: 3}
-  sprite: {fileID: 3240154900095886977, guid: 0590a1378655e9440a51625c515ea12a, type: 3}
-  sanityThreshold: 0.8
+  sanityThreshold: 0.4
+  aboveThreshold: 0
 --- !u!114 &6147198992911424648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +173,25 @@ MonoBehaviour:
   isFlashing: 0
   flashCount: 1
   flashingSpeed: 3
+--- !u!95 &-6551644503450609821
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168425774915142082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1dea77f0526567a4e92d4fdf4a2a1e63, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   healthData: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
+  onRespawn: {fileID: 11400000, guid: ab2b310cfbe93c84591fa6fb342285b1, type: 2}
+  maxHealth: 3
