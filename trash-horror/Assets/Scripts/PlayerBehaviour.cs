@@ -26,7 +26,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 
 	private SanityController sanityController;
 
-	private List<String> inventory = new List<String>();
 	private List<IInteractable> interactables = new List<IInteractable>();
     
     //Animation
@@ -103,7 +102,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	{
 		if (!m_calmdown.WasPressedThisFrame()) return;
 
-		Debug.Log("[" + string.Join(", ", inventory.ToArray()) + "]");
 		Debug.Log("Calmed down");
 		SanityController.Instance.IncreaseSanity(0.1f);
 	}
@@ -117,11 +115,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 	private void Update()
 	{
 		CalmDown();
-	}
-
-	public void AddToInventory(string item)
-	{
-		inventory.Add(item);
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
@@ -152,14 +145,11 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable
 		return new()
 		{
 			{"pos", transform.position.Serialize()},
-			{"inv", string.Join(",", inventory.ToArray())},
 		};
 	}
 
 	public void Deserialize(Dictionary<string, string> serialized)
 	{
 		transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
-		string inv = serialized["inv"];
-		inventory = string.IsNullOrWhiteSpace(inv) ? new List<string>() : inv.Split(',').ToList();
 	}
-}	
+}
