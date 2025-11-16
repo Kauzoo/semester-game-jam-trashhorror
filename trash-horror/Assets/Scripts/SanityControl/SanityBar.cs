@@ -1,16 +1,16 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SanityBar : MonoBehaviour, IGameEventListener
 {
     [SerializeField] public FloatVariable sanity;
-    [SerializeField] Slider sanitySlider;
-    
     [SerializeField] public GameEvent onSanityChange;
+    [SerializeField] Image fullSlider;
 
     private void Start()
     {
-        sanitySlider.value = sanity.value;
+        fullSlider.fillAmount = sanity.value;
     }
     
     // When the object is enabled, it registers itself with the event.
@@ -33,8 +33,6 @@ public class SanityBar : MonoBehaviour, IGameEventListener
     
     public void OnEventRaised()
     {
-        sanitySlider.value = sanity.value;
+        fullSlider.fillAmount = sanity.value;
     }
-    
-    
 }
