@@ -9,16 +9,14 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     public GameEvent onHealthChanged;
 
     public Image heart;
-    public float maxHealth;
     
     private readonly List<Image> _hearts = new();
     
     private void OnEnable()
     {
-        health.value = maxHealth;
         onHealthChanged.RegisterListener(this);
         
-        for (int i = 0; i < Mathf.Ceil(maxHealth); i++)
+        for (int i = 0; i < Mathf.Ceil(health.value); i++)
         {
             _hearts.Add(Instantiate(heart, gameObject.transform, false));
         }
@@ -38,10 +36,11 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     private void UpdateHearts()
     {
         float currentHealth = health.value;
+        
         foreach (Image heartImage in _hearts)
         {
             float thisHeartsHealth = Mathf.Min(currentHealth, 1f);
-            heartImage.fillAmount = thisHeartsHealth;
+            heartImage.fillAmount = Mathf.Ceil(thisHeartsHealth * 4f) / 4f;
             currentHealth -= thisHeartsHealth;
         }
     }
