@@ -14,7 +14,7 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
 
     public void Interact(PlayerBehaviour player)
     {
-        player.AddToInventory("Key");
+        InventoryController.Instance.AddKey();
         gameObject.SetActive(false);
         _pickedUp = true;
     }
@@ -37,14 +37,14 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
     public void On()
     {
         if (_pickedUp) return;
-        
+
         gameObject.SetActive(true);
     }
 
     public void Off()
     {
         if (_pickedUp) return;
-        
+
         gameObject.SetActive(false);
     }
 }
