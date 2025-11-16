@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e3d37318c1c4bfc85b6bb34fd0bea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Guard
-  chaseSpeed: 5
+  chaseSpeed: 3
   patrolSpeed: 1
   detectionRadius: 10
   patrolRadius: 10
