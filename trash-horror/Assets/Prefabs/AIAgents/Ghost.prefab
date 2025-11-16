@@ -315,8 +315,8 @@ MonoBehaviour:
   waypointTolerance: 1
   effectInterval: 1
   bodyCollider: {fileID: 5582369874564467668}
-  touchDamage: 0.1
-  sanityLoss: 0.1
+  touchDamage: 0.5
+  sanityLoss: 0.2
 --- !u!114 &1959533222461787293
 MonoBehaviour:
   m_ObjectHideFlags: 0
