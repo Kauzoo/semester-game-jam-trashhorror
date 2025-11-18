@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +12,7 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     
     private readonly List<Image> _hearts = new();
     
-    private void OnEnable()
+    private void Start()
     {
         onHealthChanged.RegisterListener(this);
         
@@ -38,17 +37,6 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     
     private void UpdateHearts()
     {
-        if (_hearts.Count == 0)
-        {
-            for (int i = 0; i < Mathf.Ceil(health.value); i++)
-            {
-                GameObject obj = Instantiate(heart, gameObject.transform, false);
-                Image img = obj.GetComponentsInChildren<Image>().Last();
-                _hearts.Add(img);
-            }
-        }
-        
-        
         float currentHealth = health.value;
         
         foreach (Image heartImage in _hearts)

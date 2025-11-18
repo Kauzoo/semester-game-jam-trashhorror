@@ -16,18 +16,13 @@ public class HealthController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            healthData.value = maxHealth;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    private void OnEnable()
-    {
-        healthData.value = maxHealth;
-        onHealthChanged.Raise();
     }
 
     public void DecreaseHealth(float amount)
