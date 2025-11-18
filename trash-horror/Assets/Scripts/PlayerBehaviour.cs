@@ -89,36 +89,11 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 		movement = m_movement.ReadValue<Vector2>();
 
 		//flip sprite 
-		if (movement.x < 0)
-		{
-			_spriteRenderer.flipX=true;
-		}
-		else
-		{
-			_spriteRenderer.flipX=false;
-		}
+		_spriteRenderer.flipX = movement.x < 0;
 		
 		//animation trigger
-		_animator.SetBool(LookingForward, movement.y<=0);
-		_animator.SetBool(IsMoving, (Math.Abs(movement.x)>0||Math.Abs(movement.y)>0));
-		
-
-		//Code to flip character to look left / right (Doesn work currently, needs adjusting if necessary)
-		/*
-		if (movement.x != 0 || movement.y != 0) {
-			if (movement.x > 0.0) {
-				transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-				camera.transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-
-			} else if (movement.x < 0.0) {
-				transform.localRotation = Quaternion.identity;
-				camera.transform.localRotation = Quaternion.identity;
-			}
-		} else {
-			// Idle Animation?
-		}
-		*/
-
+		_animator.SetBool(LookingForward, movement.y <= 0);
+		_animator.SetBool(IsMoving, Math.Abs(movement.x) > 0 || Math.Abs(movement.y) > 0);
 	}
 
 	private void CalmDown()

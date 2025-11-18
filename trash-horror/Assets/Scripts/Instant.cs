@@ -6,11 +6,9 @@ using Random = UnityEngine.Random;
 
 public abstract class Instant : MonoBehaviour, IGameEventListener
 {
+    private static readonly int Camouflage = Animator.StringToHash("Camouflage");
     private Animator _animator;
-    protected Flasher _flasher;
-
-    public string actualTrigger;
-    public string camouflageTrigger;
+    private Flasher _flasher;
     
     public FloatVariable sanity;
     public GameEvent sanityEvent;
@@ -33,14 +31,14 @@ public abstract class Instant : MonoBehaviour, IGameEventListener
     {
         if (_flasher.isFlashing) return;
         
-        _animator.SetTrigger(sanity.value >= sanityThreshold == aboveThreshold ? camouflageTrigger : actualTrigger);
+        _animator.SetBool(Camouflage, sanity.value >= sanityThreshold == aboveThreshold);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        _animator.SetTrigger(actualTrigger);
+        _animator.SetBool(Camouflage, !aboveThreshold);
 
         _flasher.StartFlashing(() => gameObject.SetActive(false));
 
