@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class InventoryController : MonoBehaviour, ISerializable
+public class InventoryController : MonoBehaviour
 {
     // --- SINGLETON ---
     public static InventoryController Instance { get; private set; }
@@ -40,20 +40,6 @@ public class InventoryController : MonoBehaviour, ISerializable
     public void RemoveKey()
     {
         inventory.value--;
-        onInventoryChanged.Raise();
-    }
-
-    public Dictionary<string, string> Serialize()
-    {
-        return new()
-        {
-            { "inventory", inventory.value.ToString(CultureInfo.CurrentCulture) }
-        };
-    }
-
-    public void Deserialize(Dictionary<string, string> serialized)
-    {
-        inventory.value = int.Parse(serialized["inventory"], CultureInfo.InvariantCulture);
         onInventoryChanged.Raise();
     }
 }

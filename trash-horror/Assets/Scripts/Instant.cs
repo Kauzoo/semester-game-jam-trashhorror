@@ -4,7 +4,7 @@ using UnityEngine;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
-public abstract class Instant : MonoBehaviour, IGameEventListener, ISerializable
+public abstract class Instant : MonoBehaviour, IGameEventListener
 {
     private Animator _animator;
     protected Flasher _flasher;
@@ -49,15 +49,4 @@ public abstract class Instant : MonoBehaviour, IGameEventListener, ISerializable
     }
 
     protected abstract void Trigger(PlayerBehaviour player);
-    
-    public Dictionary<string, string> Serialize()
-    {
-        return new();
-    }
-
-    public void Deserialize(Dictionary<string, string> serialized)
-    {
-        gameObject.SetActive(true);
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-    }
 }

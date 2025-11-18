@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
+public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 {
 	[Header("Calm Down Settings")]
 	[Tooltip("If checked, Calm Down only works when near a 'Friendly' tagged object.")]
@@ -54,7 +54,6 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
     //Animation
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    //TODO: add hurt animation 
 
 	private void OnEnable()
 	{
@@ -194,20 +193,7 @@ public class PlayerBehaviour : MonoBehaviour, ISerializable, IGameEventListener
 	{
 		interactables.FirstOrDefault()?.Interact(this);
 	}
-
-	public Dictionary<string, string> Serialize()
-	{
-		return new()
-		{
-			{"pos", transform.position.Serialize()},
-		};
-	}
-
-	public void Deserialize(Dictionary<string, string> serialized)
-	{
-		transform.position = Vector3Serialization.Deserialize(serialized["pos"]);
-	}
-
+	
 	private float _oldHealth = -1;
 	public void OnEventRaised()
 	{

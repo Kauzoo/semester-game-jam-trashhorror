@@ -1,22 +1,15 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HealthController : MonoBehaviour, ISerializable
+public class HealthController : MonoBehaviour
 {
     // --- SINGLETON ---
     public static HealthController Instance { get; private set; }
 
     public FloatVariable healthData;
     public GameEvent onHealthChanged;
-    public GameEvent onRespawn;
+    public StringVariable levelNameData;
     public float maxHealth = 3;
-
-    private bool _dead;
 
     private void Awake()
     {
@@ -55,37 +48,12 @@ public class HealthController : MonoBehaviour, ISerializable
     
     private void SetHealth(float health)
     {
-        if (_dead) return;
-        
         healthData.value = health;
         onHealthChanged.Raise();
         
         if (healthData.value != 0) return;
         
-        _dead = true;
-        StartCoroutine(nameof(Die));
-    }
-
-    private IEnumerator Die()
-    {
-        SceneManager.LoadScene("Scenes/GameOver", LoadSceneMode.Additive);
-        yield return new WaitForSeconds(5);
-        yield return SceneManager.UnloadSceneAsync("Scenes/GameOver");
-        onRespawn.Raise(); 
-        _dead = false;
-    }
-
-    public Dictionary<string, string> Serialize()
-    {
-        return new()
-        {
-            { "health", healthData.value.ToString(CultureInfo.CurrentCulture) }
-        };
-    }
-
-    public void Deserialize(Dictionary<string, string> serialized)
-    {
-        healthData.value = float.Parse(serialized["health"], CultureInfo.InvariantCulture);
-        onHealthChanged.Raise();
+        levelNameData.value = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Scenes/GameOver");
     }
 }

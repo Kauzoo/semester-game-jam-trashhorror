@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IInteractable : IEntity
+public interface IInteractable
 {
     public void Interact(PlayerBehaviour player);
 }
