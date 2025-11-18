@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Friendly : Creature
+public abstract class Friendly : Creature
 {
     /*
      [Tooltip("How much heal the friendly deals on contact")]
@@ -11,25 +11,21 @@ public class Friendly : Creature
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
         // 1. Check if the thing we hit is the "Player"
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 2. Check if damage cooldown has finished
-            if (effectTimer <= 0)
-            {
-                Debug.Log($"Friendly hit {collision.gameObject.name}!");
+        if (!collision.gameObject.CompareTag("Player")) return;
+        
+        // 2. Check if damage cooldown has finished
+        if (!(EffectTimer <= 0)) return;
+        
+        Debug.Log($"Friendly hit {collision.gameObject.name}!");
                 
-                // 3. Lower the Sanity Decrease when Friendly is around
-                SanityController.Instance.SetLowerSanityDecrease(true);
+        // 3. Lower the Sanity Decrease when Friendly is around
+        SanityController.Instance.SetLowerSanityDecrease(true);
                 
-                // 4. Reset cooldown timer
-                effectTimer = effectInterval;
+        // 4. Reset cooldown timer
+        EffectTimer = effectInterval;
                 
-                bodyCollider.enabled = false;
-                
-            }
-        }
+        BodyCollider.enabled = false;
     }
-   
 }
+

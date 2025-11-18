@@ -22,8 +22,6 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 
 	public AudioSource steps;
 
-	public Camera camera;
-
 	public InputActionAsset InputActions;
 
 	private InputAction m_movement;
@@ -41,7 +39,7 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 	private SanityController sanityController;
 
 	private List<IInteractable> interactables = new List<IInteractable>();
-	public FloatVariable healthData;
+	public HealthVariable healthData;
 	public GameEvent onHealthChanged;
 	
 	
@@ -172,7 +170,7 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 	private float _oldHealth = -1;
 	public void OnEventRaised()
 	{
-		_animator.SetTrigger(IsHurt);
-		_oldHealth = healthData.value;
+		if (_oldHealth > healthData.current || Mathf.Approximately(_oldHealth, -1)) _animator.SetTrigger(IsHurt);
+		_oldHealth = healthData.current;
 	}
 }

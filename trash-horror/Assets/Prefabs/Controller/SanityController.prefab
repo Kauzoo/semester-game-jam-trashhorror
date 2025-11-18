@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SanityController
   sanityData: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
   onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  onRespawn: {fileID: 11400000, guid: ac12d85d52aa27e46bc3cc1a834951b9, type: 2}
   decreaseSanityAmount: 0.1
-  sanityDecreaseInterval: 10
+  sanityDecreaseInterval: 3
   LowerSanityDecreasePercentage: 0.75

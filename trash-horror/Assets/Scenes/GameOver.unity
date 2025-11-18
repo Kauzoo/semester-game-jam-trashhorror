@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOver
   levelNameData: {fileID: 11400000, guid: 108515720ba49384babc133e1affd340, type: 2}
+  onRespawn: {fileID: 11400000, guid: ac12d85d52aa27e46bc3cc1a834951b9, type: 2}
 --- !u!1 &1988065795
 GameObject:
   m_ObjectHideFlags: 0

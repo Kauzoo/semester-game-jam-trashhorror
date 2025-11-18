@@ -218,6 +218,10 @@ MonoBehaviour:
   patrolWaitTime: 3
   waypointTolerance: 1
   effectInterval: 1
+  sanity: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  sanityThreshold: 0.8
+  aboveThreshold: 1
   bodyCollider: {fileID: 1186464919308914899}
   touchDamage: 0.5
   sanityLoss: 0

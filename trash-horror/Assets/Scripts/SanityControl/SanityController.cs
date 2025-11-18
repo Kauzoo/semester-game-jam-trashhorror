@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class SanityController : MonoBehaviour
+public class SanityController : MonoBehaviour, IGameEventListener
 {
     // --- SINGLETON ---
     public static SanityController Instance { get; private set; }
@@ -11,6 +11,7 @@ public class SanityController : MonoBehaviour
     
     public FloatVariable sanityData; // Sanity is a value between 0.0 and 1.0
     public GameEvent onSanityChanged;
+    public GameEvent onRespawn;
     
     [Header("Sanity Decrease Settings")]
     [Tooltip("The amount of sanity that decreases very timer")]
@@ -41,6 +42,8 @@ public class SanityController : MonoBehaviour
             
             // Optional: Don't destroy this object when loading new scenes
             DontDestroyOnLoad(gameObject); 
+            
+            onRespawn.RegisterListener(this);
         }
         else
         {
@@ -94,28 +97,33 @@ public class SanityController : MonoBehaviour
         timer -= Time.deltaTime;
 
         // 2. When the timer runs out...
-        if (timer <= 0f)
+        if (!(timer <= 0f)) return;
+        
+        // If Sanity is 0, the player loses health
+        if (sanityData.value <= 0)
         {
-            // If Sanity is 0, the player loses health
-            if (sanityData.value <= 0)
-            {
-                HealthController.Instance.DecreaseHealth(0.25f);
-            }
-            else
-            {
-                // 3. Calculate a new sanity value
-                //float newSanityValue = Random.Range(0f, 0.25f);
-                float newSanityValue = decreaseSanityAmount;
-
-                // 4. Update the global sanity data
-                if (sanityData != null)
-                {
-                    DecreaseSanity(newSanityValue);
-                    Debug.Log($"Sanity changed to: {sanityData.value}");
-                }
-            }
-            // 6. Reset the timer for the next random change
-            timer += sanityDecreaseInterval;
+            HealthController.Instance.DecreaseHealth(0.25f);
         }
+        else
+        {
+            // 3. Calculate a new sanity value
+            //float newSanityValue = Random.Range(0f, 0.25f);
+            float newSanityValue = decreaseSanityAmount;
+
+            // 4. Update the global sanity data
+            if (sanityData != null)
+            {
+                DecreaseSanity(newSanityValue);
+                Debug.Log($"Sanity changed to: {sanityData.value}");
+            }
+        }
+        // 6. Reset the timer for the next random change
+        timer += sanityDecreaseInterval;
+    }
+
+    public void OnEventRaised()
+    {
+        sanityData.value = 1;
+        onSanityChanged.Raise();
     }
 }

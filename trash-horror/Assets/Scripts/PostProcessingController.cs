@@ -18,6 +18,9 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     private GameEvent onSanityChanged;
     
     [SerializeField]
+    private GameEvent onRespawn;
+    
+    [SerializeField]
     private FloatVariable sanityData;
     
     [SerializeField]
@@ -35,6 +38,8 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     [SerializeField]
     private SO_PostProcessData.ChromaticAberrationData chromaticAberrationData;
     
+    public static PostProcessingController Instance;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +49,21 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
         globalVolume.profile.TryGet<ChromaticAberration>(out chromaticAberrationData.component);
     }
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            onRespawn.RegisterListener(this);
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Instance.spotLight = spotLight;
+            Instance.globalVolume = globalVolume;
+            Destroy(gameObject);
+        }
+    }
 
     public void OnEnable()
     {
@@ -57,7 +77,6 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     {
       if(onSanityChanged != null )
       {
-          
           onSanityChanged.UnregisterListener(this);
       }
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour, IGameEventListener
 {
-    public FloatVariable health;
+    public HealthVariable health;
     public GameEvent onHealthChanged;
 
     public GameObject heart;
@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     {
         onHealthChanged.RegisterListener(this);
         
-        for (int i = 0; i < Mathf.Ceil(health.value); i++)
+        for (int i = 0; i < Mathf.Ceil(health.max); i++)
         {
             GameObject obj = Instantiate(heart, gameObject.transform, false);
             Image img = obj.GetComponentsInChildren<Image>().Last();
@@ -37,7 +37,7 @@ public class HealthBar : MonoBehaviour, IGameEventListener
     
     private void UpdateHearts()
     {
-        float currentHealth = health.value;
+        float currentHealth = health.current;
         
         foreach (Image heartImage in _hearts)
         {

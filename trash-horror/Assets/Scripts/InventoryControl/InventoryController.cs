@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class InventoryController : MonoBehaviour
+public class InventoryController : MonoBehaviour, IGameEventListener
 {
     // --- SINGLETON ---
     public static InventoryController Instance { get; private set; }
 
     public IntVariable inventory;
     public GameEvent onInventoryChanged;
+    public GameEvent onRespawn;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class InventoryController : MonoBehaviour
         {
             Instance = this;
             inventory.value = 0;
+            onRespawn.RegisterListener(this);
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -41,5 +43,10 @@ public class InventoryController : MonoBehaviour
     {
         inventory.value--;
         onInventoryChanged.Raise();
+    }
+
+    public void OnEventRaised()
+    {
+        inventory.value = 0;
     }
 }

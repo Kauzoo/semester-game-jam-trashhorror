@@ -75,6 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b13069328c4230ae96f795c11e1785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
-  health: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
+  health: {fileID: 11400000, guid: e7ccbbeb7e34c4f4684d8de2679fe12a, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
   heart: {fileID: 4325775637420343914, guid: 79efade306647884990ed05649531649, type: 3}

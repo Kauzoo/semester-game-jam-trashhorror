@@ -487,7 +487,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   speedMultiplier: 80
-  healthData: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
+  healthData: {fileID: 11400000, guid: e7ccbbeb7e34c4f4684d8de2679fe12a, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
 --- !u!70 &7382353763907431621
 CapsuleCollider2D:

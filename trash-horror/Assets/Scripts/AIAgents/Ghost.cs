@@ -7,8 +7,9 @@ public class Ghost : Hostile
     protected override void Chasing()
     {
         base.Chasing();
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.linearVelocity = direction * chaseSpeed;
+        Vector2 direction = (Target.position - transform.position).normalized;
+        Rigidbody.linearVelocity = direction * chaseSpeed;
+        
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
     }
@@ -16,25 +17,25 @@ public class Ghost : Hostile
     protected override void Patrol()
     {
         // 1. Check if we've arrived at our random destination
-        float distance = Vector2.Distance(transform.position, targetPatrolPosition);
+        float distance = Vector2.Distance(transform.position, TargetPatrolPosition);
 
         if (distance < waypointTolerance)
         {
-            rb.linearVelocity = Vector2.zero;
-            patrolWaitTimer -= Time.fixedDeltaTime;
+            Rigidbody.linearVelocity = Vector2.zero;
+            PatrolWaitTimer -= Time.fixedDeltaTime;
 
-            if (patrolWaitTimer <= 0)
+            if (PatrolWaitTimer <= 0)
             {
                 // Wait is over: Get a new point and reset timer
                 GenerateNewPatrolPoint();
-                patrolWaitTimer = patrolWaitTime;
+                PatrolWaitTimer = patrolWaitTime;
             } 
         }
         else
         {
             // Haven't arrived yet. Keep moving
-            Vector2 direction = (targetPatrolPosition - (Vector2)transform.position).normalized;
-            rb.linearVelocity = direction * patrolSpeed;
+            Vector2 direction = (TargetPatrolPosition - (Vector2)transform.position).normalized;
+            Rigidbody.linearVelocity = direction * patrolSpeed;
         }
     }
 
@@ -44,6 +45,6 @@ public class Ghost : Hostile
         Vector2 randomDirection = Random.insideUnitCircle * patrolRadius;
         
         // Set the new target position relative to our spawn
-        targetPatrolPosition = spawnPosition + randomDirection;
+        TargetPatrolPosition = SpawnPosition + randomDirection;
     }
 }

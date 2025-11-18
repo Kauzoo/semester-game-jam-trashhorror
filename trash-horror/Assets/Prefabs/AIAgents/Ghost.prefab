@@ -223,6 +223,10 @@ MonoBehaviour:
   patrolWaitTime: 3
   waypointTolerance: 1
   effectInterval: 1
+  sanity: {fileID: 11400000, guid: ce57725eab99a49a4bd844c9348a7cb0, type: 2}
+  onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
+  sanityThreshold: 0.8
+  aboveThreshold: 1
   bodyCollider: {fileID: 5582369874564467668}
   touchDamage: 0.5
   sanityLoss: 0
@@ -236,7 +240,7 @@ Animator:
   m_GameObject: {fileID: 8945207461922790501}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a0cbae26a494b3c4daa1aafa628f6029, type: 2}
+  m_Controller: {fileID: 9100000, guid: 551119a5c8dfe4e43a17e45282bb1163, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

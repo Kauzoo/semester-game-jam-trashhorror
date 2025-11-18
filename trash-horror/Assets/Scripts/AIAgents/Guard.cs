@@ -1,27 +1,15 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Guard : Hostile
 {
-    private UnityEngine.AI.NavMeshAgent agent;
-
-    private Animator _animator;
-    protected override void Start()
+    protected override void Patrol()
     {
-        _animator = GetComponent<Animator>();
-        base.Start();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        
+        throw new System.NotImplementedException();
     }
 
-    protected override void Chasing()
+    protected override void GenerateNewPatrolPoint()
     {
-        _animator.SetFloat("Speed",agent.speed);
-        base.Chasing();
-        agent.speed = chaseSpeed;
-        agent.destination = target.position;
+        throw new System.NotImplementedException();
     }
 }
 

@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
   inventory: {fileID: 11400000, guid: 6be737500c82530488a509594b38e3af, type: 2}
   onInventoryChanged: {fileID: 11400000, guid: 8481a466d5999494a9dad212edb5367b, type: 2}
+  onRespawn: {fileID: 11400000, guid: ac12d85d52aa27e46bc3cc1a834951b9, type: 2}

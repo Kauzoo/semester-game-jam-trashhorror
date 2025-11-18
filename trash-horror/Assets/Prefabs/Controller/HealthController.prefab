@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78828810bec840b3b92a6e2db5b572b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  healthData: {fileID: 11400000, guid: a6da4b86873a95c4da83268218f4bdca, type: 2}
+  healthData: {fileID: 11400000, guid: e7ccbbeb7e34c4f4684d8de2679fe12a, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 77086b915d661e140ac5e033f9cd071f, type: 2}
+  onRespawn: {fileID: 11400000, guid: ac12d85d52aa27e46bc3cc1a834951b9, type: 2}
   levelNameData: {fileID: 11400000, guid: 108515720ba49384babc133e1affd340, type: 2}
   maxHealth: 3
