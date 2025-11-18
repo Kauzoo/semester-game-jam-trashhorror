@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -959473027
   m_SortingLayer: 3
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -3308123370142042246, guid: 72f9162914b4f1940b813ab782c94132, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -227,7 +227,6 @@ MonoBehaviour:
   onSanityChanged: {fileID: 11400000, guid: c88f1305b1d8c4535ab423c9f77648fc, type: 2}
   sanityThreshold: 0.8
   aboveThreshold: 1
-  bodyCollider: {fileID: 5582369874564467668}
   touchDamage: 0.5
   sanityLoss: 0
 --- !u!95 &308165646778120790
