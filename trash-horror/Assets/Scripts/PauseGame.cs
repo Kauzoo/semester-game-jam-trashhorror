@@ -10,6 +10,7 @@ public class PauseGame : MonoBehaviour
 
     public bool IsPaused = false;
     public Button m_ResumeButton;
+    public Button m_QuitButton;
 
     private void OnEnable()
     {
@@ -30,6 +31,7 @@ public class PauseGame : MonoBehaviour
     void Start()
     {
         m_ResumeButton.onClick.AddListener(PauseApplication);
+        m_QuitButton.onClick.AddListener(Application.Quit);
     }
 
     // Update is called once per frame
