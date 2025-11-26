@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyController : MonoBehaviour, IInteractable, IToggleable
 {
     private bool _pickedUp;
+    public AudioClip keyPickupAudioClip;
     public bool isVisible = true;
 
     private void Awake()
@@ -14,6 +15,7 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
 
     public void Interact(PlayerBehaviour player)
     {
+        AudioSource.PlayClipAtPoint(keyPickupAudioClip, gameObject.transform.position);
         InventoryController.Instance.AddKey();
         gameObject.SetActive(false);
         _pickedUp = true;

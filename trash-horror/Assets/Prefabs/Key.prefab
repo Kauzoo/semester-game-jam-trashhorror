@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d836a2c83e85e1d4ea10106f4bcc39a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyController
+  keyPickupAudioClip: {fileID: 8300000, guid: 1d22bbb2666e6e34e9b40b3cdb7b5464, type: 3}
   isVisible: 1
 --- !u!95 &3557927230933696746
 Animator:
