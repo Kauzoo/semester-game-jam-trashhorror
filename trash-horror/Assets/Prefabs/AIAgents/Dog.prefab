@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157587418d53a4a81af9901b33529f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dog
-  chaseSpeed: 1
-  patrolSpeed: 1
+  chaseSpeed: 3
+  patrolSpeed: 3
   detectionRadius: 8
   patrolRadius: 10
   patrolWaitTime: 3
