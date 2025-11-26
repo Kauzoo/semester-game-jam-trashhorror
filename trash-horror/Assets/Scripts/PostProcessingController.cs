@@ -38,6 +38,9 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     [SerializeField]
     private SO_PostProcessData.ChromaticAberrationData chromaticAberrationData;
     
+    [SerializeField]
+    private FloatVariable lightFadeModifier;
+    
     public static PostProcessingController Instance;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -108,8 +111,8 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
                 spotLight.t -= Time.deltaTime;
                 break;
         }
-        
-        spotLight.light.pointLightOuterRadius = spotLight.curve.Evaluate(spotLight.t);
+        Debug.Log($"min({lightFadeModifier.value}, {spotLight.curve.Evaluate(spotLight.t)}) = {Math.Min(lightFadeModifier.value, spotLight.curve.Evaluate(spotLight.t))}");
+        spotLight.light.pointLightOuterRadius = Math.Min(lightFadeModifier.value, spotLight.curve.Evaluate(spotLight.t));
     }
 
     private void HandleLensDistortion()

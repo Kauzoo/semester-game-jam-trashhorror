@@ -193,3 +193,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  lightFadeModifier: {fileID: 11400000, guid: ed2a03b2981d3f04ebac8046373e05e9, type: 2}

@@ -9,16 +9,18 @@ public abstract class Instant : MonoBehaviour, IGameEventListener
     private static readonly int Camouflage = Animator.StringToHash("Camouflage");
     private Animator _animator;
     private Flasher _flasher;
+    private AudioSource _audioSource;
     
     public FloatVariable sanity;
     public GameEvent sanityEvent;
     public float sanityThreshold = 0.8f;
-    public bool aboveThreshold;
+    public bool camouflageAboveThreshold;
 
     private void OnEnable()
     {
         _animator = GetComponent<Animator>();
         _flasher = GetComponent<Flasher>();
+        _audioSource = GetComponent<AudioSource>();
         sanityEvent.RegisterListener(this);
     }
 
@@ -31,14 +33,16 @@ public abstract class Instant : MonoBehaviour, IGameEventListener
     {
         if (_flasher.isFlashing) return;
         
-        _animator.SetBool(Camouflage, sanity.value >= sanityThreshold == aboveThreshold);
+        _animator.SetBool(Camouflage, sanity.value >= sanityThreshold == camouflageAboveThreshold);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        _animator.SetBool(Camouflage, !aboveThreshold);
+        _animator.SetBool(Camouflage, false);
+
+        _audioSource.Play(0);
 
         _flasher.StartFlashing(() => gameObject.SetActive(false));
 

@@ -42,7 +42,6 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 	public HealthVariable healthData;
 	public GameEvent onHealthChanged;
 	
-	
 	// This tracks how many friendly objects we are near.
 	private int friendlyCount = 0;
     

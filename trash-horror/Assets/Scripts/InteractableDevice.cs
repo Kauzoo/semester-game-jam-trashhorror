@@ -13,10 +13,13 @@ public abstract class InteractableDevice : MonoBehaviour, IInteractable
 
     private SpriteRenderer spriteRenderer;
 
+    private AudioSource audioSource;
+
     private void OnEnable()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         toggled = toggledGameObject?.GetComponent<IToggleable>();
+        audioSource = GetComponent<AudioSource>();
 
         if (toggled == null)
         {
@@ -37,6 +40,7 @@ public abstract class InteractableDevice : MonoBehaviour, IInteractable
             toggled?.Off();
         }
 
+        audioSource.Play(0);
         UpdateSprite();
     }
 
