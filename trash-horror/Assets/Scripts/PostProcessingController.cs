@@ -5,44 +5,44 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class PostProcessingController : MonoBehaviour,  IGameEventListener
+public class PostProcessingController : MonoBehaviour, IGameEventListener
 {
-    
+
     [SerializeField]
     private Volume globalVolume;
 
-    [SerializeField] 
+    [SerializeField]
     private SO_PostProcessData.spotLight spotLight;
-    
+
     [SerializeField]
     private GameEvent onSanityChanged;
-    
+
     [SerializeField]
     private GameEvent onRespawn;
-    
+
     [SerializeField]
     private FloatVariable sanityData;
-    
+
     [SerializeField]
     private SO_PostProcessData postProcessData;
-    
+
     [SerializeField]
-    private SO_PostProcessData.LensDistortionData  lensDistortionData;
-    
+    private SO_PostProcessData.LensDistortionData lensDistortionData;
+
     [SerializeField]
-    private SO_PostProcessData.ChannelMixerData  channelMixerData;
-    
+    private SO_PostProcessData.ChannelMixerData channelMixerData;
+
     [SerializeField]
     private SO_PostProcessData.WhiteBalanceData whiteBalanceData;
-    
+
     [SerializeField]
     private SO_PostProcessData.ChromaticAberrationData chromaticAberrationData;
-    
+
     [SerializeField]
     private FloatVariable lightFadeModifier;
-    
+
     public static PostProcessingController Instance;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,7 +51,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
         globalVolume.profile.TryGet<WhiteBalance>(out whiteBalanceData.component);
         globalVolume.profile.TryGet<ChromaticAberration>(out chromaticAberrationData.component);
     }
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -78,10 +78,10 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
 
     public void OnDisable()
     {
-      if(onSanityChanged != null )
-      {
-          onSanityChanged.UnregisterListener(this);
-      }
+        if (onSanityChanged != null)
+        {
+            onSanityChanged.UnregisterListener(this);
+        }
     }
 
     // Update is called once per frame
@@ -92,14 +92,14 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
         HandleChannelMixer();
         HandleWhiteBalance();
         HandleChromaticAberration();
-        
+
     }
 
     private void HandleSpotlight()
     {
-        if(spotLight.t > 0.5f)
+        if (spotLight.t > 0.5f)
             spotLight.t = 0.5f;
-        if(spotLight.t < 0f)
+        if (spotLight.t < 0f)
             spotLight.t = 0f;
 
         switch (spotLight.curveState)
@@ -111,7 +111,6 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
                 spotLight.t -= Time.deltaTime;
                 break;
         }
-        Debug.Log($"min({lightFadeModifier.value}, {spotLight.curve.Evaluate(spotLight.t)}) = {Math.Min(lightFadeModifier.value, spotLight.curve.Evaluate(spotLight.t))}");
         spotLight.light.pointLightOuterRadius = Math.Min(lightFadeModifier.value, spotLight.curve.Evaluate(spotLight.t));
     }
 
@@ -119,8 +118,8 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     {
         if (lensDistortionData.t <= 0f)
             lensDistortionData.t = 0f;
-        
-        if(lensDistortionData.t > 2f)
+
+        if (lensDistortionData.t > 2f)
             lensDistortionData.t = 0f;
 
         switch (lensDistortionData.curveState)
@@ -128,12 +127,12 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             case SO_PostProcessData.CurveStates.Increas:
                 lensDistortionData.t += Time.deltaTime;
                 break;
-            
+
             case SO_PostProcessData.CurveStates.Decreas:
                 lensDistortionData.t -= Time.deltaTime;
                 break;
         }
-        
+
         lensDistortionData.component.intensity.value = lensDistortionData.curve.Evaluate(lensDistortionData.t);
     }
 
@@ -141,7 +140,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
     {
         if (channelMixerData.t <= 0f)
             channelMixerData.t = 0f;
-        
+
         if (channelMixerData.t > 1.5f)
             channelMixerData.t = 0f;
 
@@ -150,12 +149,12 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             case SO_PostProcessData.CurveStates.Increas:
                 channelMixerData.t += Time.deltaTime;
                 break;
-            
+
             case SO_PostProcessData.CurveStates.Neutral:
                 channelMixerData.t = 0;
                 break;
         }
-        channelMixerData.component.greenOutGreenIn.value = channelMixerData.curve.Evaluate(channelMixerData.t);;
+        channelMixerData.component.greenOutGreenIn.value = channelMixerData.curve.Evaluate(channelMixerData.t); ;
     }
 
     private void HandleWhiteBalance()
@@ -174,19 +173,19 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
                 whiteBalanceData.t -= Time.deltaTime;
                 break;
         }
-        
+
         whiteBalanceData.component.temperature.value = whiteBalanceData.curve.Evaluate(whiteBalanceData.t);
     }
     private void HandleChromaticAberration()
     {
-        
-        if(chromaticAberrationData.t <= 0)
+
+        if (chromaticAberrationData.t <= 0)
             chromaticAberrationData.t = 0f;
         if (chromaticAberrationData.t >= 1f)
         {
             chromaticAberrationData.t = 1f;
         }
-        
+
         switch (chromaticAberrationData.curveState)
         {
             case SO_PostProcessData.CurveStates.Increas:
@@ -210,12 +209,12 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             {
                 spotLight.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            
+
             else if (sanityData.value < postProcessData.spotLightManipulation)
             {
                 spotLight.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
-            
+
             if (sanityData.value < postProcessData.chromaticAberrationActivation)
             {
                 chromaticAberrationData.curveState = SO_PostProcessData.CurveStates.Increas;
@@ -229,7 +228,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             {
                 lensDistortionData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            
+
             else if (sanityData.value > postProcessData.lensDistortionActivation)
             {
                 lensDistortionData.curveState = SO_PostProcessData.CurveStates.Decreas;
@@ -239,7 +238,7 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             {
                 channelMixerData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            
+
             else if (sanityData.value > postProcessData.channelMixerActivation)
             {
                 channelMixerData.curveState = SO_PostProcessData.CurveStates.Neutral;
@@ -249,16 +248,16 @@ public class PostProcessingController : MonoBehaviour,  IGameEventListener
             {
                 whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Increas;
             }
-            
+
             else if (sanityData.value > postProcessData.whiteBalanceActivation)
             {
                 whiteBalanceData.curveState = SO_PostProcessData.CurveStates.Decreas;
             }
-            
-            
+
+
         }
-        
-        
+
+
         Debug.Log("No Valid Objects");
     }
 }
