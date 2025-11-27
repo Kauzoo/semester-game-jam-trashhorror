@@ -9,7 +9,6 @@ public class LevelEndController : MonoBehaviour
     public FloatVariable lightFadeModifier;
     
     private AudioSource audioSource;
-    private bool fadingOut = false;
 
     void Start()
     {
@@ -23,7 +22,6 @@ public class LevelEndController : MonoBehaviour
             InventoryController.Instance.RemoveKey();
             audioSource.Play(0);
             Time.timeScale = 0.1f;
-            fadingOut = true;
             StartCoroutine(SceneLoadAfterDelay());
             StartCoroutine(FadeOutOverTime());
         }
@@ -33,7 +31,6 @@ public class LevelEndController : MonoBehaviour
     {
         yield return new WaitForSeconds(fadeOutDelay * Time.timeScale);
         Time.timeScale = 1f;
-        fadingOut = false;
         lightFadeModifier.value = 10;
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }

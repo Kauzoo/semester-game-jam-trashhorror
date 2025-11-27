@@ -21,26 +21,9 @@ public class KeyController : MonoBehaviour, IInteractable, IToggleable
         _pickedUp = true;
     }
 
-    public Dictionary<string, string> Serialize()
-    {
-        return new()
-        {
-            { "active", gameObject.activeSelf.ToString() },
-            { "pickedUp", _pickedUp.ToString() }
-        };
-    }
-
-    public void Deserialize(Dictionary<string, string> serialized)
-    {
-        gameObject.SetActive(bool.Parse(serialized["active"]));
-        _pickedUp = bool.Parse(serialized["pickedUp"]);
-    }
-
     public void On()
     {
-        Debug.Log("On");
         if (_pickedUp) return;
-        Debug.Log("On2");
 
         gameObject.SetActive(true);
     }
