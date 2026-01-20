@@ -30,9 +30,6 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 	private static readonly int LookingForward = Animator.StringToHash("LookingForward");
 	private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
-
-	private InputAction m_calmdown;
-
 	[SerializeField]
 	private float speedMultiplier = 80;
 
@@ -71,7 +68,6 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 		rb = GetComponent<Rigidbody2D>();
 
 		m_movement = InputSystem.actions.FindAction("Move");
-		m_calmdown = InputSystem.actions.FindAction("Calm down");
 		InputSystem.actions.FindAction("Interact").started += OnInteract;
 		
 		// Animation
@@ -93,9 +89,8 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 		_animator.SetBool(IsMoving, Math.Abs(movement.x) > 0 || Math.Abs(movement.y) > 0);
 	}
 
-	private void CalmDown()
+	private void AttemptCalmDown()
 	{
-		if (!m_calmdown.WasPressedThisFrame()) return;
 
 		if (requireFriendlyNearby == false)
 		{
@@ -132,7 +127,6 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 
 	private void Update()
 	{
-		CalmDown();
 		if (rb.linearVelocity.magnitude > 3.0f)
 		{
 			steps.enabled = true;
@@ -163,7 +157,11 @@ public class PlayerBehaviour : MonoBehaviour, IGameEventListener
 
 	private void OnInteract(InputAction.CallbackContext context)
 	{
+		// 1. Try to interact with world objects
 		interactables.FirstOrDefault()?.Interact(this);
+		
+		// 2. Try to perform the Calm Down mechanic
+		AttemptCalmDown();
 	}
 	
 	private float _oldHealth = -1;
